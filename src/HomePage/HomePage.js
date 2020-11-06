@@ -7,7 +7,7 @@ const HomePage = (props) => {
     <section className='homepage-container'>
       <h1 className='welcome'>Welcome, 1st Year!</h1>
       <img className='sorting-hat-image' src={sortingHat} alt='sorting hat'/>
-      <button onClick={props.setHouse} className='house-button'>find my house</button>
+      {props.changeHomePageButton()}
     </section>
   )
 }
