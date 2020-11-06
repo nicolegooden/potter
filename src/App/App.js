@@ -13,8 +13,18 @@ class App extends Component {
   }
 
   setHouse = () => {
-    if (this.state.house.length === 0) {
-      getSorted().then((houseName) => this.setState({house: houseName}))
+    getSorted().then((houseName) => this.setState({house: houseName}))
+  }
+
+  changeHomePageButton = () => {
+    if (this.state.house.length > 0) {
+      return (
+      <button className='house-button'>learn about {this.state.house}</button>
+      ) 
+    } else {
+      return (
+        <button onClick={this.setHouse} className='house-button'>find my house</button>
+      )
     }
   }
   
@@ -22,7 +32,7 @@ class App extends Component {
     return (
       <main className='app-container'>
         <Route exact path='/'>
-          <HomePage setHouse={this.setHouse}/>
+          <HomePage changeHomePageButton={this.changeHomePageButton}/>
         </Route>
       </main>
     )
