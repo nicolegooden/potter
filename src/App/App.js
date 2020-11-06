@@ -13,7 +13,9 @@ class App extends Component {
   }
 
   setHouse = () => {
-    getSorted().then((houseName) => this.setState({house: houseName}))
+    if (this.state.house.length === 0) {
+      getSorted().then((houseName) => this.setState({house: houseName}))
+    }
   }
   
   render() {
