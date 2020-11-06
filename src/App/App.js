@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
+import HomePage from '../HomePage/HomePage';
 
 class App extends Component {
   constructor() {
@@ -9,8 +11,10 @@ class App extends Component {
   
   render() {
     return (
-      <main>
-        <h1>hi</h1>
+      <main className='app-container'>
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
       </main>
     )
   }
