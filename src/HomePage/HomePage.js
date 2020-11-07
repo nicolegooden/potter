@@ -14,7 +14,11 @@ const HomePage = (props) => {
     houseButton = <button onClick={props.setHouse} className='house-button'>find my house</button>
   } else {
     message = <h1 className='message'>You are... {props.house}!</h1>
-    houseButton = <button className='house-button'>learn about {props.house}</button>
+    houseButton = (
+      <Link to='/house' className='house-button-container'>
+        <button className='house-button'>learn about {props.house}</button>
+      </Link>
+    )
     characterButton = (
       <Link to='/characters' className='character-container'>
         <button onClick={props.getStudentsByHouse} className='character-button'>choose character</button>
