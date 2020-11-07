@@ -1,0 +1,17 @@
+.house-details-section {
+  background-image:url('https://images.unsplash.com/photo-1476846764689-14e2b6b2f133?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 40em;
+}
+
+.house-details-wrapper {
+  background-color: #D7E0E0;
+  width: 20%;
+  border-radius: 5%;
+}
+
+.house-name {
+  font-size: 2em;
+}

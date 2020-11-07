@@ -4,7 +4,9 @@ import './App.css';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import CharactersContainer from '../CharactersContainer/CharactersContainer';
-import { getSorted, getCharacters, getMyCharacter } from '../apiCalls'
+import House from '../House/House';
+import CharacterDetails from '../CharacterDetails/CharacterDetails';
+import { getSorted, getCharacters, getMyCharacter, getAllHouses } from '../apiCalls'
 
 class App extends Component {
   constructor() {
@@ -12,6 +14,7 @@ class App extends Component {
     this.state = {
       house: '',
       allStudents: [],
+      allHouses: [],
       studentsByHouse: [],
       myName: '',
       myCharacter: null
@@ -20,10 +23,16 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getAllStudents();
+    this.setAllHouses();
   }
 
   setHouse = () => {
     getSorted().then((houseName) => this.setState({house: houseName}))
+  }
+
+  setAllHouses = () => {
+    getAllHouses()
+    .then((houses) => this.setState({allHouses: houses}))
   }
 
   getAllStudents = () => {
@@ -34,6 +43,23 @@ class App extends Component {
       })
       this.setState({allStudents: students})
     });
+  }
+
+  determineAssociation = (association) => {
+    if (this.state.myCharacter[association]) {
+      if (association === 'dumbledorsArmy') {
+        return <h2 className='association'>Dumbledore's Army</h2>
+      } 
+      if (association === 'orderOfThePhoenix') {
+        return <h2 className='association'>Order of the Phoenix</h2>
+      } 
+      if (association === 'deathEater') {
+        return <h2 className='association'>Death Eater</h2>
+      }
+      if (association === 'ministryOfMagic') {
+        return <h2 className='association'>Ministry of Magic</h2>
+      }
+    }
   }
 
   getStudentsByHouse = () => {
@@ -66,6 +92,7 @@ class App extends Component {
             house={this.state.house}
             setHouse={this.setHouse}
             getStudentsByHouse={this.getStudentsByHouse}
+            myCharacter={this.state.myCharacter}
           />
         </Route>
         <Route path='/characters'>
@@ -78,6 +105,28 @@ class App extends Component {
             myCharacter={this.state.myCharacter}
             myID={this.state.myID}
           />
+        </Route>
+        <Route 
+          path='/house/:houseName'
+          render={({ match }) => {
+            const house = this.state.allHouses.find(house => house.name === match.params.houseName)
+            if (house) {
+              return <House details={house}/>
+            }
+          }}
+        >
+        </Route>
+        <Route 
+          path='/my-character/:characterName'
+          render={({ match }) => {
+            if (match.params.characterName === this.state.myCharacter.name) {
+              return <CharacterDetails 
+                details={this.state.myCharacter}
+                determineAssociation={this.determineAssociation}
+              />
+            }
+          }}
+        >
         </Route>
       </main>
     )

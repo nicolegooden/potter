@@ -1,0 +1,20 @@
+.character-full-name, .associations-heading {
+  font-size: 2.5em;
+}
+
+.character-detail, .association, .associations-heading {
+  color: white;
+  text-shadow: 3px 3px black;
+}
+
+.my-character-details-section {
+  background-image:url('https://images.unsplash.com/photo-1598153346810-860daa814c4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1790&q=80');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 45em;
+}
+
+.associations-section {
+  width: 25em;
+}
