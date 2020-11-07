@@ -9,8 +9,28 @@
   grid-gap: 3em;
 }
 
-.chosen-character-text {
+.characters-container-message {
   text-align: center;
   background-color: #839898;
   margin: 0;
+  font-size: 1.5em;
+}
+
+.message-and-button {
+  background-color: #839898;
+  display: flex;
+  justify-content: center;
+}
+
+.finalize-character-button {
+  border-radius: 15%;
+  margin-left: 2em;
+  width: 5em;
+  height: 2em;
+}
+
+.finalize-character-button:hover {
+  cursor: pointer;
+  box-shadow: 15px 4px 20px black;
+  background-color: #E0F8F8;
 }
