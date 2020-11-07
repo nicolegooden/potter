@@ -66,7 +66,7 @@ describe('Character Card', () => {
   })
 
 
-  it('should render all expected elements', async () => {
+  it('should render all expected elements before character selection', async () => {
 
     let mockID = 'ghi789';
     let mockName = 'Hermione Granger';
