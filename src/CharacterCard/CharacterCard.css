@@ -1,0 +1,23 @@
+.character-article {
+  background-color: white;
+  height: 15em;;
+  margin: 2em;
+  border-radius: 6%;
+  background-color: #f2f2dc;
+}
+
+.select-button {
+  border-radius: 15%;
+  margin-left: 11em;
+}
+
+.select-button:hover {
+  cursor: pointer;
+  box-shadow: 15px 4px 20px black;
+  background-color: #E0F8F8;
+}
+
+.character-name {
+  font-size: 1.5em;
+  text-align: center;
+}

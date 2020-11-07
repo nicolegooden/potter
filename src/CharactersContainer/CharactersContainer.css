@@ -1,0 +1,36 @@
+.all-characters-section {
+  background-image:url('https://nerdist.com/wp-content/uploads/2019/10/hogwarts-staircase-540x305.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 45em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3em;
+}
+
+.characters-container-message {
+  text-align: center;
+  background-color: #839898;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.message-article {
+  background-color: #839898;
+  display: flex;
+  justify-content: center;
+}
+
+.finalize-character-button {
+  border-radius: 15%;
+  margin-left: 2em;
+  width: 5em;
+  height: 2em;
+}
+
+.finalize-character-button:hover {
+  cursor: pointer;
+  box-shadow: 15px 4px 20px black;
+  background-color: #E0F8F8;
+}

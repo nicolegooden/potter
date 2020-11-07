@@ -17,7 +17,7 @@ const HomePage = (props) => {
     houseButton = <button className='house-button'>learn about {props.house}</button>
     characterButton = (
       <Link to='/characters' className='character-container'>
-        <button className='character-button'>choose character</button>
+        <button onClick={props.getStudentsByHouse} className='character-button'>choose character</button>
       </Link>
     )
   }
