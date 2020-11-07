@@ -3,7 +3,7 @@ import './CharactersContainer.css';
 import CharacterCard from '../CharacterCard/CharacterCard';
 
 const CharactersContainer = (props) => {
-  const allCharacters = props.allStudents.map(char => {
+  const allCharacters = props.studentsByHouse.map(char => {
     return (
       <CharacterCard 
         name={char.name}

@@ -4,4 +4,7 @@
   background-position: center;
   background-size: cover;
   height: 45em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 3em;
 }
