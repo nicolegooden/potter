@@ -1,5 +1,6 @@
 import React from 'react';
 import './House.css';
+import PropTypes from 'prop-types';
 
 const House = (props) => {
   let values = props.details.values.map(value => {
@@ -26,3 +27,7 @@ const House = (props) => {
 }
 
 export default House;
+
+House.propTypes = {
+  details: PropTypes.object.isRequired
+}
