@@ -2,6 +2,7 @@ import React from 'react';
 import './HomePage.css';
 import sortingHat from '../sorting-hat-image.png'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const HomePage = (props) => {
   let message;
@@ -32,3 +33,8 @@ const HomePage = (props) => {
 }
 
 export default HomePage;
+
+HomePage.propTypes = {
+  house: PropTypes.string.isRequired,
+  setHouse: PropTypes.func.isRequired
+}
