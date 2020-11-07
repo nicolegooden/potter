@@ -11,7 +11,8 @@ class App extends Component {
     super();
     this.state = {
       house: '',
-      allStudents: []
+      allStudents: [],
+      studentsByHouse: []
     }
   }
 
@@ -33,6 +34,13 @@ class App extends Component {
     });
   }
 
+  getStudentsByHouse = () => {
+    const studentsByHouse = this.state.allStudents.filter(student => {
+      return student.house === this.state.house;
+    })
+    this.setState({studentsByHouse: studentsByHouse})
+  }
+
   render() {
     return (
       <main className='app-container'>
@@ -43,12 +51,13 @@ class App extends Component {
           <HomePage 
             house={this.state.house}
             setHouse={this.setHouse}
+            getStudentsByHouse={this.getStudentsByHouse}
           />
         </Route>
         <Route path='/characters'>
           <CharactersContainer 
             house={this.state.house}
-            allStudents={this.state.allStudents}
+            studentsByHouse={this.state.studentsByHouse}
           />
         </Route>
       </main>
