@@ -6,9 +6,11 @@ const CharactersContainer = (props) => {
   const allCharacters = props.studentsByHouse.map(char => {
     return (
       <CharacterCard 
+        id={char._id}
         name={char.name}
         bloodStatus={char.bloodStatus}
         species={char.species}
+        setCharacter={props.setCharacter}
       />
     )
   })
