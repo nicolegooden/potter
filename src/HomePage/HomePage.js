@@ -15,7 +15,7 @@ const HomePage = (props) => {
   } else {
     message = <h1 className='message'>You are... {props.house}!</h1>
     houseButton = (
-      <Link to='/house' className='house-button-container'>
+      <Link to={`/house/${props.house}`} className='house-button-container'>
         <button className='house-button'>learn about {props.house}</button>
       </Link>
     )
