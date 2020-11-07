@@ -48,5 +48,7 @@ export default HomePage;
 
 HomePage.propTypes = {
   house: PropTypes.string.isRequired,
-  setHouse: PropTypes.func.isRequired
+  setHouse: PropTypes.func.isRequired,
+  getStudentsByHouse: PropTypes.func.isRequired,
+  myCharacter: PropTypes.object
 }
