@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import CharactersContainer from '../CharactersContainer/CharactersContainer';
+import House from '../House/House';
 import { getSorted, getCharacters, getMyCharacter, getAllHouses } from '../apiCalls'
 
 class App extends Component {
@@ -86,17 +87,18 @@ class App extends Component {
             myID={this.state.myID}
           />
         </Route>
-        {/* <Route 
-          path='/house/:id'
+        <Route 
+          path='/house/:houseName'
           render={({ match }) => {
-            const house = allHouses.find(house => house.id === parseInt(match.params.id));
+            const house = this.state.allHouses.find(house => house.name === match.params.houseName)
             if (house) {
-              return <House details={house}/>
+              console.log(house)
+              return <House name={house.name}/>
             }
           }}
         >
 
-        </Route> */}
+        </Route>
       </main>
     )
   }
