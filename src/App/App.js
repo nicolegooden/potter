@@ -13,6 +13,7 @@ class App extends Component {
       house: '',
       allStudents: [],
       studentsByHouse: [],
+      myName: '',
       myCharacter: null
     }
   }
@@ -49,6 +50,11 @@ class App extends Component {
     })
   }
 
+  setTempCharacterDetails = (characterName, characterID) => {
+    this.setState({myName: characterName})
+    this.setState({myID: characterID})
+  }
+
   render() {
     return (
       <main className='app-container'>
@@ -67,7 +73,10 @@ class App extends Component {
             house={this.state.house}
             studentsByHouse={this.state.studentsByHouse}
             setCharacter={this.setCharacter}
+            setTempCharacterDetails={this.setTempCharacterDetails}
+            myName={this.state.myName}
             myCharacter={this.state.myCharacter}
+            myID={this.state.myID}
           />
         </Route>
       </main>
