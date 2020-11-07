@@ -21,3 +21,14 @@ export const getCharacters = async () => {
     console.log(error);
   }
 }
+
+export const getMyCharacter = async (characterID) => {
+  const response = await fetch(`https://www.potterapi.com/v1/characters/${characterID}/${apiKey}`)
+  try {
+    if (response.ok) {
+      return response.json();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
