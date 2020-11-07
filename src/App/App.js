@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import HomePage from '../HomePage/HomePage';
+import Header from '../Header/Header';
 import { getSorted } from '../apiCalls'
 
 class App extends Component {
@@ -19,6 +20,9 @@ class App extends Component {
   render() {
     return (
       <main className='app-container'>
+        <Route path='/'>
+          <Header />
+        </Route>
         <Route exact path='/'>
           <HomePage 
             house={this.state.house}

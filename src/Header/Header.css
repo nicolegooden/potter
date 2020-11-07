@@ -1,0 +1,25 @@
+.header-container {
+  background-color: #839898;
+  height: 8em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
+}
+
+.hp-logo {
+  height: 7em;
+  width: auto;
+  margin-top: 1em;
+}
+
+.nav-container {
+  grid-column-start: 3;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 2em;
+  align-items: center;
+}
+
+.header-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
