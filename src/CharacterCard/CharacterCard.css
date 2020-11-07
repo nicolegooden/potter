@@ -1,0 +1,17 @@
+.character-article {
+  background-color: white;
+  height: 80%;
+  margin: 2em;
+  border-radius: 6%;
+  background-color: #f2f2dc;
+}
+
+.choose-button {
+  border-radius: 15%;
+  margin-left: 11em;
+}
+
+.character-name {
+  font-size: 1.5em;
+  text-align: center;
+}
