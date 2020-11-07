@@ -5,6 +5,7 @@ import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import CharactersContainer from '../CharactersContainer/CharactersContainer';
 import House from '../House/House';
+import CharacterDetails from '../CharacterDetails/CharacterDetails';
 import { getSorted, getCharacters, getMyCharacter, getAllHouses } from '../apiCalls'
 
 class App extends Component {
@@ -44,6 +45,23 @@ class App extends Component {
     });
   }
 
+  determineAssociation = (association) => {
+    if (this.state.myCharacter[association]) {
+      if (association === 'dumbledorsArmy') {
+        return <h2 className='association'>Dumbledore's Army</h2>
+      } 
+      if (association === 'orderOfThePhoenix') {
+        return <h2 className='association'>Order of the Phoenix</h2>
+      } 
+      if (association === 'deathEater') {
+        return <h2 className='association'>Death Eater</h2>
+      }
+      if (association === 'ministryOfMagic') {
+        return <h2 className='association'>Ministry of Magic</h2>
+      }
+    }
+  }
+
   getStudentsByHouse = () => {
     const studentsByHouse = this.state.allStudents.filter(student => {
       return student.house === this.state.house;
@@ -74,6 +92,7 @@ class App extends Component {
             house={this.state.house}
             setHouse={this.setHouse}
             getStudentsByHouse={this.getStudentsByHouse}
+            myCharacter={this.state.myCharacter}
           />
         </Route>
         <Route path='/characters'>
@@ -96,7 +115,18 @@ class App extends Component {
             }
           }}
         >
-
+        </Route>
+        <Route 
+          path='/my-character/:characterName'
+          render={({ match }) => {
+            if (match.params.characterName === this.state.myCharacter.name) {
+              return <CharacterDetails 
+                details={this.state.myCharacter}
+                determineAssociation={this.determineAssociation}
+              />
+            }
+          }}
+        >
         </Route>
       </main>
     )
