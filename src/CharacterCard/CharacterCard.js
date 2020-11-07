@@ -8,7 +8,7 @@ const CharacterCard = (props) => {
       <h3 className='character-blood-status'>Blood Status: {props.bloodStatus}</h3>
       <h3 className='character-species'>Species: {props.species}</h3>
       <div className='button-wrapper'>
-        <button onClick={() => props.setCharacter(props.id)} className='choose-button'>choose</button>
+        <button onClick={() => props.setCharacter(props.id)} className='select-button'>select</button>
       </div>
     </article>
   )
