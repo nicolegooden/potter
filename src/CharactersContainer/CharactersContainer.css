@@ -8,3 +8,9 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 3em;
 }
+
+.chosen-character-text {
+  text-align: center;
+  background-color: #839898;
+  margin: 0;
+}

@@ -19,14 +19,14 @@ const CharactersContainer = (props) => {
   if (props.myCharacter) {
     chosenCharacterText = <h1 className='chosen-character-text'>You've chosen {props.myCharacter.name}</h1>
   }
-  
+
   return (
-      <section>
+      <section className='characters-container'>
         {chosenCharacterText}
-      <section className='all-characters-section'>
-        {allCharacters}
+        <section className='all-characters-section'>
+          {allCharacters}
+        </section>
       </section>
-    </section>
   )
 }
 
