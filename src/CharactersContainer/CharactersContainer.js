@@ -11,17 +11,23 @@ const CharactersContainer = (props) => {
         name={char.name}
         bloodStatus={char.bloodStatus}
         species={char.species}
-        setCharacter={props.setCharacter}
+        setTempCharacterDetails={props.setTempCharacterDetails}
+        myCharacter={props.myCharacter}
       />
     )
   })
 
-  if (props.myCharacter) {
+  if (props.myName && !props.myCharacter) {
     message = (
-      <article className='message-and-button'>
-        <h1 className='characters-container-message'>You've selected {props.myCharacter.name}</h1>
-        <button className='finalize-character-button'>finalize</button>
+      <article className='message-article'>
+        <h1 className='characters-container-message'>You've selected {props.myName}</h1>
+        <button onClick={() => props.setCharacter(props.myID)} className='finalize-character-button'>finalize</button>
       </article>)
+  } else if (props.myCharacter) {
+    message = (
+    <article className='message-article'>
+      <h1 className='characters-container-message'>Welcome, {props.myCharacter.name}</h1>
+    </article>)
   } else {
     message = <h1 className='characters-container-message'>Select a character</h1>
   }
