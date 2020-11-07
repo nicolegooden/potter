@@ -92,8 +92,7 @@ class App extends Component {
           render={({ match }) => {
             const house = this.state.allHouses.find(house => house.name === match.params.houseName)
             if (house) {
-              console.log(house)
-              return <House name={house.name}/>
+              return <House details={house}/>
             }
           }}
         >
