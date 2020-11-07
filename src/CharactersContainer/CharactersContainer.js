@@ -1,12 +1,14 @@
 import React from 'react';
 import './CharactersContainer.css';
 import CharacterCard from '../CharacterCard/CharacterCard';
+import PropTypes from 'prop-types';
 
 const CharactersContainer = (props) => {
   let message;
   const allCharacters = props.studentsByHouse.map(char => {
     return (
       <CharacterCard 
+        key={char._id}
         id={char._id}
         name={char.name}
         bloodStatus={char.bloodStatus}
@@ -43,3 +45,13 @@ const CharactersContainer = (props) => {
 }
 
 export default CharactersContainer;
+
+CharactersContainer.propTypes = {
+  house: PropTypes.string.isRequired,
+  studentsByHouse: PropTypes.array.isRequired,
+  setCharacter: PropTypes.func.isRequired,
+  setTempCharacterDetails: PropTypes.func.isRequired,
+  myName: PropTypes.string,
+  myCharacter: PropTypes.object,
+  myID: PropTypes.string
+}
