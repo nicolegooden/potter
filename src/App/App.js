@@ -4,7 +4,7 @@ import './App.css';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import CharactersContainer from '../CharactersContainer/CharactersContainer';
-import { getSorted, getCharacters } from '../apiCalls'
+import { getSorted, getCharacters, getMyCharacter } from '../apiCalls'
 
 class App extends Component {
   constructor() {
@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       house: '',
       allStudents: [],
-      studentsByHouse: []
+      studentsByHouse: [],
+      myCharacter: null
     }
   }
 
@@ -41,6 +42,13 @@ class App extends Component {
     this.setState({studentsByHouse: studentsByHouse})
   }
 
+  setCharacter = (characterID) => {
+    getMyCharacter(characterID)
+    .then((charDetails) => {
+      this.setState({myCharacter: charDetails})
+    })
+  }
+
   render() {
     return (
       <main className='app-container'>
@@ -58,6 +66,7 @@ class App extends Component {
           <CharactersContainer 
             house={this.state.house}
             studentsByHouse={this.state.studentsByHouse}
+            setCharacter={this.setCharacter}
           />
         </Route>
       </main>
