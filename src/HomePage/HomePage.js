@@ -26,6 +26,14 @@ const HomePage = (props) => {
     )
   }
 
+  if (characterButton && props.myCharacter) {
+    characterButton = (
+      <Link to={`/my-character/${props.myCharacter.name}`} className='character-container'>
+        <button className='character-button'>view character details</button>
+      </Link>
+    )
+  }
+
   return (
     <section className='homepage-container'>
       {message}
