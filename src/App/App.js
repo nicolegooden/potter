@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import './App.css';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
+import CharactersContainer from '../CharactersContainer/CharactersContainer';
 import { getSorted } from '../apiCalls'
 
 class App extends Component {
@@ -28,6 +29,9 @@ class App extends Component {
             house={this.state.house}
             setHouse={this.setHouse}
           />
+        </Route>
+        <Route path='/characters'>
+          <CharactersContainer house={this.state.house}/>
         </Route>
       </main>
     )
