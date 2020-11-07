@@ -67,6 +67,7 @@ class App extends Component {
             house={this.state.house}
             studentsByHouse={this.state.studentsByHouse}
             setCharacter={this.setCharacter}
+            myCharacter={this.state.myCharacter}
           />
         </Route>
       </main>
