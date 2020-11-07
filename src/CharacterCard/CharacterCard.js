@@ -1,5 +1,6 @@
 import React from 'react';
 import './CharacterCard.css';
+import PropTypes from 'prop-types';
 
 const CharacterCard = (props) => {
   let button;
@@ -19,3 +20,12 @@ const CharacterCard = (props) => {
 }
 
 export default CharacterCard;
+
+CharacterCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  bloodStatus: PropTypes.string.isRequired,
+  species: PropTypes.string.isRequired,
+  setTempCharacterDetails: PropTypes.func.isRequired,
+  myCharacter: PropTypes.object
+}
