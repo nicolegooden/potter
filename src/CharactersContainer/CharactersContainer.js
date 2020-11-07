@@ -3,7 +3,7 @@ import './CharactersContainer.css';
 import CharacterCard from '../CharacterCard/CharacterCard';
 
 const CharactersContainer = (props) => {
-  let chosenCharacterText;
+  let message;
   const allCharacters = props.studentsByHouse.map(char => {
     return (
       <CharacterCard 
@@ -17,12 +17,18 @@ const CharactersContainer = (props) => {
   })
 
   if (props.myCharacter) {
-    chosenCharacterText = <h1 className='chosen-character-text'>You've chosen {props.myCharacter.name}</h1>
+    message = (
+      <article className='message-and-button'>
+        <h1 className='characters-container-message'>You've selected {props.myCharacter.name}</h1>
+        <button className='finalize-character-button'>finalize</button>
+      </article>)
+  } else {
+    message = <h1 className='characters-container-message'>Select a character</h1>
   }
 
   return (
       <section className='characters-container'>
-        {chosenCharacterText}
+        {message}
         <section className='all-characters-section'>
           {allCharacters}
         </section>
