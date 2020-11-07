@@ -1,5 +1,6 @@
 import React from 'react';
 import './CharacterDetails.css';
+import PropTypes from 'prop-types';
 
 const CharacterDetails = (props) => {
   let boggart;
@@ -26,3 +27,8 @@ const CharacterDetails = (props) => {
 }
 
 export default CharacterDetails
+
+CharacterDetails.propTypes = {
+  details: PropTypes.object.isRequired,
+  determineAssociation: PropTypes.func.isRequired
+}
