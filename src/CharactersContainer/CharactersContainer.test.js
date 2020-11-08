@@ -137,20 +137,6 @@ describe('Characters Container', () => {
     const mockSetTemp = jest.fn();
     const mockMyName = '';
     const mockMyCharacter = null;
-    // const mockMyCharacter = {
-    //   _id: 'abc123',
-    //   name: 'Harry Potter',
-    //   role: 'student',
-    //   house: 'Gryffindor',
-    //   school: 'Hogwarts',
-    //   ministryOfMagic: false,
-    //   orderOfThePhoenix: true, 
-    //   dumbledoresArmy: true,
-    //   boggart: 'Dementor',
-    //   deathEater: false,
-    //   bloodStatus: 'half-blood',
-    //   species: 'human'
-    // };
     const mockMyID = ''
 
     render(
@@ -170,9 +156,83 @@ describe('Characters Container', () => {
     const name = await waitFor(() => screen.getByText('Ginny Weasley'));
     expect(name).toBeInTheDocument();
     expect(screen.getByText('Neville Longbottom')).toBeInTheDocument();
+    expect(screen.getByText('Harry Potter')).toBeInTheDocument();
+    expect(screen.getByText('Hermione Granger')).toBeInTheDocument();
+    expect(screen.getByText('Parvati Patil')).toBeInTheDocument();
+    expect(screen.queryByText('Charity Burbage')).toBeNull();
     expect(screen.getByText('Select a character')).toBeInTheDocument();
     expect(screen.queryByText('Draco Malfoy')).toBeNull();
     // expect(screen.getAllByRole('button', {name: 'select'})).toBeInTheDocument();
     // ^ how can I check that this button shows up multiple times?
+  })
+
+  it('should render elements based on clicking select on card', async () => {
+    const mockHouse = 'Gryffindor';
+    const mockSetCharacter = jest.fn();
+    const mockStudentsByHouse = [
+      {
+        id: 'abc123',
+        name: 'Harry Potter',
+        bloodStatus: 'half-blood',
+        species: 'hero',
+        role: 'student',
+        house: 'Gryffindor',
+      },
+      {
+        _id: 'ghi789',
+        name: 'Hermione Granger',
+        role: 'student',
+        house: 'Gryffindor',
+        bloodStatus: 'muggle-born',
+        species: 'human'
+      },
+      {
+        id: 'def456',
+        name: 'Ginny Weasley',
+        bloodStatus: 'pure-blood',
+        species: 'human',
+        role: 'student',
+        house: 'Gryffindor',
+      },
+      {
+        id: 'nic383',
+        name: 'Neville Longbottom',
+        bloodStatus: 'pure-blood',
+        species: 'human',
+        role: 'student',
+        house: 'Gryffindor',
+      },
+      {
+        id: 'dsflj45',
+        name: 'Parvati Patil',
+        bloodStatus: 'unknown',
+        species: 'human',
+        role: 'student',
+        house: 'Gryffindor',
+      }
+    ];
+    const mockSetTemp = jest.fn();
+    const mockMyName = 'Harry Potter';
+    const mockMyCharacter = null;
+    const mockMyID = 'abc123';
+
+    render(
+      <MemoryRouter>
+        <CharactersContainer 
+          house={mockHouse}
+          studentsByHouse={mockStudentsByHouse}
+          setCharacter={mockSetCharacter}
+          setTempCharacterDetails={mockSetTemp}
+          myName={mockMyName}
+          myCharacter={mockMyCharacter}
+          myID={mockMyID}
+        />
+      </MemoryRouter>
+    )
+
+    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    expect(name).toBeInTheDocument();
+    expect(screen.getByText('You\'ve selected Harry Potter')).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
   })
 })
