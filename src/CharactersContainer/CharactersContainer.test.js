@@ -1,12 +1,15 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 import CharactersContainer from './CharactersContainer.js';
 import { MemoryRouter } from 'react-router-dom';
 import { getCharacters } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
 
 describe('Characters Container', () => {
+   
+  let mockStudentsByHouse;
 
   beforeEach(() => {
     getCharacters.mockResolvedValueOnce([
@@ -63,7 +66,7 @@ describe('Characters Container', () => {
           species: 'human'
         },
         {
-            id: 'nic383',
+            _id: 'nic383',
             name: 'Neville Longbottom',
             bloodStatus: 'pure-blood',
             species: 'human',
@@ -71,7 +74,7 @@ describe('Characters Container', () => {
             house: 'Gryffindor',
           },
           {
-            id: 'dsflj45',
+            _id: 'dsflj45',
             name: 'Parvati Patil',
             bloodStatus: 'unknown',
             species: 'human',
@@ -79,7 +82,7 @@ describe('Characters Container', () => {
             house: 'Gryffindor',
           },
           {
-            id: 'def456',
+            _id: 'def456',
             name: 'Ginny Weasley',
             bloodStatus: 'pure-blood',
             species: 'human',
@@ -87,6 +90,49 @@ describe('Characters Container', () => {
             house: 'Gryffindor',
           }
       ])
+
+      mockStudentsByHouse = [
+        {
+          _id: 'abc123',
+          name: 'Harry Potter',
+          bloodStatus: 'half-blood',
+          species: 'hero',
+          role: 'student',
+          house: 'Gryffindor',
+        },
+        {
+          _id: 'ghi789',
+          name: 'Hermione Granger',
+          role: 'student',
+          house: 'Gryffindor',
+          bloodStatus: 'muggle-born',
+          species: 'human'
+        },
+        {
+          _id: 'def456',
+          name: 'Ginny Weasley',
+          bloodStatus: 'pure-blood',
+          species: 'human',
+          role: 'student',
+          house: 'Gryffindor',
+        },
+        {
+          _id: 'nic383',
+          name: 'Neville Longbottom',
+          bloodStatus: 'pure-blood',
+          species: 'human',
+          role: 'student',
+          house: 'Gryffindor',
+        },
+        {
+          _id: 'dsflj45',
+          name: 'Parvati Patil',
+          bloodStatus: 'unknown',
+          species: 'human',
+          role: 'student',
+          house: 'Gryffindor',
+        }
+      ];
     })  
 
   it('should render expected elements', async () => {
@@ -94,7 +140,7 @@ describe('Characters Container', () => {
     const mockSetCharacter = jest.fn();
     const mockStudentsByHouse = [
       {
-        id: 'abc123',
+        _id: 'abc123',
         name: 'Harry Potter',
         bloodStatus: 'half-blood',
         species: 'hero',
@@ -110,7 +156,7 @@ describe('Characters Container', () => {
         species: 'human'
       },
       {
-        id: 'def456',
+        _id: 'def456',
         name: 'Ginny Weasley',
         bloodStatus: 'pure-blood',
         species: 'human',
@@ -118,7 +164,7 @@ describe('Characters Container', () => {
         house: 'Gryffindor',
       },
       {
-        id: 'nic383',
+        _id: 'nic383',
         name: 'Neville Longbottom',
         bloodStatus: 'pure-blood',
         species: 'human',
@@ -126,7 +172,7 @@ describe('Characters Container', () => {
         house: 'Gryffindor',
       },
       {
-        id: 'dsflj45',
+        _id: 'dsflj45',
         name: 'Parvati Patil',
         bloodStatus: 'unknown',
         species: 'human',
@@ -164,57 +210,17 @@ describe('Characters Container', () => {
     expect(screen.queryByText('Draco Malfoy')).toBeNull();
     // expect(screen.getAllByRole('button', {name: 'select'})).toBeInTheDocument();
     // ^ how can I check that this button shows up multiple times?
+    //do more thorough testing with data-testID attribute on each select button
+    //  in charactercard component
   })
 
-  it('should render elements based on clicking select on card', async () => {
+  it('should fire onClick method with correct arguments based on selecting a card', async () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
-    const mockStudentsByHouse = [
-      {
-        id: 'abc123',
-        name: 'Harry Potter',
-        bloodStatus: 'half-blood',
-        species: 'hero',
-        role: 'student',
-        house: 'Gryffindor',
-      },
-      {
-        _id: 'ghi789',
-        name: 'Hermione Granger',
-        role: 'student',
-        house: 'Gryffindor',
-        bloodStatus: 'muggle-born',
-        species: 'human'
-      },
-      {
-        id: 'def456',
-        name: 'Ginny Weasley',
-        bloodStatus: 'pure-blood',
-        species: 'human',
-        role: 'student',
-        house: 'Gryffindor',
-      },
-      {
-        id: 'nic383',
-        name: 'Neville Longbottom',
-        bloodStatus: 'pure-blood',
-        species: 'human',
-        role: 'student',
-        house: 'Gryffindor',
-      },
-      {
-        id: 'dsflj45',
-        name: 'Parvati Patil',
-        bloodStatus: 'unknown',
-        species: 'human',
-        role: 'student',
-        house: 'Gryffindor',
-      }
-    ];
     const mockSetTemp = jest.fn();
-    const mockMyName = 'Harry Potter';
+    const mockMyName = '';
     const mockMyCharacter = null;
-    const mockMyID = 'abc123';
+    const mockMyID = '';
 
     render(
       <MemoryRouter>
@@ -232,7 +238,8 @@ describe('Characters Container', () => {
 
     const name = await waitFor(() => screen.getByText('Ginny Weasley'));
     expect(name).toBeInTheDocument();
-    expect(screen.getByText('You\'ve selected Harry Potter')).toBeInTheDocument();
-    expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
+    userEvent.click(screen.getByTestId('select button for Harry Potter'));
+    expect(mockSetTemp).toHaveBeenCalledTimes(1);
+    expect(mockSetTemp).toHaveBeenCalledWith('Harry Potter', 'abc123');
   })
 })
