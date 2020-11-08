@@ -61,5 +61,42 @@ describe('HomePage', () => {
     expect(result).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'choose character'})).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'learn about Ravenclaw'})).toBeInTheDocument();
+    userEvent.click(screen.getByRole('button', {name: 'choose character'}));
+    expect(mockGetStudentsByHouse).toHaveBeenCalledTimes(1);
+  })
+
+  it('should change character button if a character has been finalized', async () => {
+    mockMyCharacter = {
+      _id: 'jng7',
+      alias: 'Moaning Myrtle',
+      bloodStatus: 'muggle-born',
+      deathEater: false,
+      dumbledoresArmy: false,
+      house: 'Ravenclaw',
+      ministryOfMagic: false,
+      name: 'Myrtle Warren',
+      orderOfThePhoenix: false,
+      role: 'student',
+      school: 'Hogwarts',
+      species: 'ghost'
+    };
+
+    mockHouse = 'Ravenclaw';
+
+    render(
+      <MemoryRouter>
+        <HomePage 
+          house={mockHouse}
+          setHouse={mockSetHouse}
+          getStudentsByHouse={mockGetStudentsByHouse}
+          myCharacter={mockMyCharacter}
+        />
+      </MemoryRouter>
+    )
+
+    const result = await waitFor(() => screen.getByText('You are... Ravenclaw!'));
+    expect(result).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'view character details'})).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'learn about Ravenclaw'})).toBeInTheDocument();
   })
 })
