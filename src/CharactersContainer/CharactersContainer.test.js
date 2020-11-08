@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import CharactersContainer from './CharacterContainer.js';
+import CharactersContainer from './CharactersContainer.js';
 import { MemoryRouter } from 'react-router-dom';
 import { getCharacters } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
@@ -88,9 +88,8 @@ describe('Characters Container', () => {
           }
       ])
     })  
-  })
 
-  it('should render expected elements', () => {
+  it('should render expected elements', async () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
     const mockStudentsByHouse = [
@@ -136,23 +135,44 @@ describe('Characters Container', () => {
       }
     ];
     const mockSetTemp = jest.fn();
-    const mockMyName = 'Harry Potter';
-    const mockMyCharacter = {
-      _id: 'abc123',
-      name: 'Harry Potter',
-      role: 'student',
-      house: 'Gryffindor',
-      school: 'Hogwarts',
-      ministryOfMagic: false,
-      orderOfThePhoenix: true, 
-      dumbledoresArmy: true,
-      boggart: 'Dementor',
-      deathEater: false,
-      bloodStatus: 'half-blood',
-      species: 'human'
-    };
-    const mockMyID = 'abc123'
+    const mockMyName = '';
+    const mockMyCharacter = null;
+    // const mockMyCharacter = {
+    //   _id: 'abc123',
+    //   name: 'Harry Potter',
+    //   role: 'student',
+    //   house: 'Gryffindor',
+    //   school: 'Hogwarts',
+    //   ministryOfMagic: false,
+    //   orderOfThePhoenix: true, 
+    //   dumbledoresArmy: true,
+    //   boggart: 'Dementor',
+    //   deathEater: false,
+    //   bloodStatus: 'half-blood',
+    //   species: 'human'
+    // };
+    const mockMyID = ''
 
+    render(
+      <MemoryRouter>
+        <CharactersContainer 
+          house={mockHouse}
+          studentsByHouse={mockStudentsByHouse}
+          setCharacter={mockSetCharacter}
+          setTempCharacterDetails={mockSetTemp}
+          myName={mockMyName}
+          myCharacter={mockMyCharacter}
+          myID={mockMyID}
+        />
+      </MemoryRouter>
+    )
 
+    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    expect(name).toBeInTheDocument();
+    expect(screen.getByText('Neville Longbottom')).toBeInTheDocument();
+    expect(screen.getByText('Select a character')).toBeInTheDocument();
+    expect(screen.queryByText('Draco Malfoy')).toBeNull();
+    // expect(screen.getAllByRole('button', {name: 'select'})).toBeInTheDocument();
+    // ^ how can I check that this button shows up multiple times?
   })
 })
