@@ -4,68 +4,8 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import CharacterCard from './CharacterCard.js';
 import { MemoryRouter } from 'react-router-dom';
-import { getCharacters } from '../apiCalls.js';
-jest.mock('../apiCalls.js');
 
 describe('Character Card', () => {
-  beforeEach(() => {
-    getCharacters.mockResolvedValueOnce([
-      {
-        _id: 'abc123',
-        name: 'Harry Potter',
-        role: 'student',
-        house: 'Gryffindor',
-        school: 'Hogwarts',
-        ministryOfMagic: false,
-        orderOfThePhoenix: true, 
-        dumbledoresArmy: true,
-        boggart: 'Dementor',
-        deathEater: false,
-        bloodStatus: 'half-blood',
-        species: 'human'
-      },
-      {
-        _id: 'def456',
-        name: 'Draco Malfoy',
-        role: 'student',
-        house: 'Slytherin',
-        school: 'Hogwarts',
-        ministryOfMagic: false,
-        orderOfThePhoenix: false, 
-        dumbledoresArmy: false,
-        deathEater: true,
-        bloodStatus: 'pure-blood',
-        species: 'human'
-      },
-      {
-        _id: 'ghi789',
-        name: 'Hermione Granger',
-        role: 'student',
-        house: 'Gryffindor',
-        school: 'Hogwarts',
-        ministryOfMagic: false,
-        orderOfThePhoenix: true, 
-        dumbledoresArmy: true,
-        deathEater: false,
-        bloodStatus: 'muggle-born',
-        species: 'human'
-      },
-      {
-        _id: 'jkl101',
-        name: 'Charity Burbage',
-        role: 'Professor, Muggle Studies',
-        school: 'Hogwarts',
-        ministryOfMagic: true,
-        orderOfThePhoenix: false, 
-        dumbledoresArmy: false,
-        deathEater: false,
-        bloodStatus: 'unknown',
-        species: 'human'
-      }
-    ])
-  })
-
-
   it('should render all expected elements before character selection', async () => {
 
     let mockID = 'ghi789';

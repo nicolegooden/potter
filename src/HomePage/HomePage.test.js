@@ -4,8 +4,6 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import HomePage from './Homepage';
 import { MemoryRouter } from 'react-router-dom';
-import { getSorted } from '../apiCalls.js';
-jest.mock('../apiCalls.js');
 
 describe('HomePage', () => {
   
@@ -17,7 +15,6 @@ describe('HomePage', () => {
   beforeEach(() => {
     mockSetHouse = jest.fn();
     mockGetStudentsByHouse = jest.fn();
-    getSorted.mockResolvedValueOnce('Ravenclaw');
   })
 
   it('should render expected elements when user arrives', () => {

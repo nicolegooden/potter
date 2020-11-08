@@ -1,10 +1,8 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
 import House from './House.js';
 import { MemoryRouter } from 'react-router-dom';
-jest.mock('../apiCalls.js');
 
 describe('House', () => {
   it('should render all house details', () => {
