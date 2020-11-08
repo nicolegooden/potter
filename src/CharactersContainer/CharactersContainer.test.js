@@ -242,4 +242,136 @@ describe('Characters Container', () => {
     expect(mockSetTemp).toHaveBeenCalledTimes(1);
     expect(mockSetTemp).toHaveBeenCalledWith('Harry Potter', 'abc123');
   })
+
+  it('should show the character selected based on props', async () => {
+    const mockHouse = 'Gryffindor';
+    const mockSetCharacter = jest.fn();
+    const mockSetTemp = jest.fn();
+    const mockMyName = 'Harry Potter';
+    const mockMyCharacter = null;
+    const mockMyID = 'abc123';
+
+    render(
+      <MemoryRouter>
+        <CharactersContainer 
+          house={mockHouse}
+          studentsByHouse={mockStudentsByHouse}
+          setCharacter={mockSetCharacter}
+          setTempCharacterDetails={mockSetTemp}
+          myName={mockMyName}
+          myCharacter={mockMyCharacter}
+          myID={mockMyID}
+        />
+      </MemoryRouter>
+    )
+
+    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    expect(name).toBeInTheDocument();
+    expect(screen.getByText('You\'ve selected Harry Potter')).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
+  })
+
+  it('should call setCharacter when user finalizes character selection', async () => {
+    const mockHouse = 'Gryffindor';
+    const mockSetCharacter = jest.fn();
+    const mockSetTemp = jest.fn();
+    const mockMyName = 'Harry Potter';
+    const mockMyCharacter = null;
+    const mockMyID = 'abc123';
+
+    render(
+      <MemoryRouter>
+        <CharactersContainer 
+          house={mockHouse}
+          studentsByHouse={mockStudentsByHouse}
+          setCharacter={mockSetCharacter}
+          setTempCharacterDetails={mockSetTemp}
+          myName={mockMyName}
+          myCharacter={mockMyCharacter}
+          myID={mockMyID}
+        />
+      </MemoryRouter>
+    )
+
+    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    expect(name).toBeInTheDocument();
+    expect(screen.getByText('You\'ve selected Harry Potter')).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
+    userEvent.click(screen.getByRole('button', {name: 'finalize'}));
+    expect(mockSetCharacter).toHaveBeenCalledTimes(1);
+    expect(mockSetCharacter).toHaveBeenCalledWith('abc123');
+  })
+
+  it('should remove select button from all cards myCharacter exists', async () => {
+    const mockHouse = 'Gryffindor';
+    const mockSetCharacter = jest.fn();
+    const mockSetTemp = jest.fn();
+    const mockMyName = 'Harry Potter';
+    const mockMyID = 'abc123';
+    const mockMyCharacter = {
+        _id: 'abc123',
+        name: 'Harry Potter',
+        role: 'student',
+        house: 'Gryffindor',
+        school: 'Hogwarts',
+        ministryOfMagic: false,
+        orderOfThePhoenix: true, 
+        dumbledoresArmy: true,
+        boggart: 'Dementor',
+        deathEater: false,
+        bloodStatus: 'half-blood',
+        species: 'hero'
+    }
+
+    render(
+      <MemoryRouter>
+        <CharactersContainer 
+          house={mockHouse}
+          studentsByHouse={mockStudentsByHouse}
+          setCharacter={mockSetCharacter}
+          setTempCharacterDetails={mockSetTemp}
+          myName={mockMyName}
+          myCharacter={mockMyCharacter}
+          myID={mockMyID}
+        />
+      </MemoryRouter>
+    )
+
+    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    expect(name).toBeInTheDocument();
+    expect(screen.getByText('Welcome, Harry Potter')).toBeInTheDocument();
+    expect(screen.queryByRole('button', {name: 'finalize'})).toBeNull();
+    expect(screen.queryByRole('button', {name: 'select'})).toBeNull();
+  })
+
+  it('should allow user to select different characters before finalizing', async () => {
+    const mockHouse = 'Gryffindor';
+    const mockSetCharacter = jest.fn();
+    const mockSetTemp = jest.fn();
+    const mockMyName = '';
+    const mockMyCharacter = null;
+    const mockMyID = '';
+
+    render(
+      <MemoryRouter>
+        <CharactersContainer 
+          house={mockHouse}
+          studentsByHouse={mockStudentsByHouse}
+          setCharacter={mockSetCharacter}
+          setTempCharacterDetails={mockSetTemp}
+          myName={mockMyName}
+          myCharacter={mockMyCharacter}
+          myID={mockMyID}
+        />
+      </MemoryRouter>
+    )
+
+    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    expect(name).toBeInTheDocument();
+    userEvent.click(screen.getByTestId('select button for Harry Potter'));
+    expect(mockSetTemp).toHaveBeenCalledWith('Harry Potter', 'abc123');
+    userEvent.click(screen.getByTestId('select button for Hermione Granger'));
+    expect(mockSetTemp).toHaveBeenCalledTimes(2);
+    expect(mockSetTemp).toHaveBeenCalledWith('Hermione Granger', 'ghi789');
+  })
 })
