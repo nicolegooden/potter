@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import App from './App.js';
 import { MemoryRouter } from 'react-router-dom';
-import { getSorted, getCharacters, getAllHouses } from '../apiCalls.js';
+import { getSorted, getCharacters, getAllHouses, getMyCharacter } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
 
 describe('App', () => {
@@ -68,9 +68,16 @@ describe('App', () => {
               _id: 'nic383',
               name: 'Neville Longbottom',
               bloodStatus: 'pure-blood',
+              boggart: 'Severus Snape',
               species: 'human',
+              deathEater: false,
+              dumbledoresArmy: true,
+              ministryOfMagic: false,
+              orderOfThePhoenix: false,
               role: 'student',
               house: 'Gryffindor',
+              school: 'Hogwarts',
+              wand: 'Cherry, 13\', unicorn hair'
             },
             {
               _id: 'dsflj45',
@@ -115,8 +122,23 @@ describe('App', () => {
         values: ['ambitious', 'cunning', 'leadership', 'resourcefulness'],
         colors: ['green', 'silver']  
       },
-    ])
-    
+    ]);
+
+    getMyCharacter.mockResolvedValueOnce({
+        _id: 'nic383',
+        name: 'Neville Longbottom',
+        bloodStatus: 'pure-blood',
+        boggart: 'Severus Snape',
+        species: 'human',
+        deathEater: false,
+        dumbledoresArmy: true,
+        ministryOfMagic: false,
+        orderOfThePhoenix: false,
+        role: 'student',
+        house: 'Gryffindor',
+        school: 'Hogwarts',
+        wand: 'Cherry, 13\', unicorn hair'
+    })
   })
 
   it('should render Header and Homepage', () => {
@@ -133,7 +155,6 @@ describe('App', () => {
     expect(screen.getByText('Welcome, 1st Year!')).toBeInTheDocument();
     expect(screen.getByAltText('sorting hat')).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'find my house'})).toBeInTheDocument();
-    screen.debug()
   })
 
   it('should bring user to expected page when corresponding nav link is clicked', () => {
@@ -159,6 +180,35 @@ describe('App', () => {
 
     userEvent.click(screen.getByRole('button', {name: 'find my house'}));
     const result = await waitFor(() => screen.getByText('You are... Gryffindor!'));
+
     expect(result).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'choose character'})).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'learn about Gryffindor'})).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', {name: 'choose character'}));
+
+    expect(screen.getByText('Select a character')).toBeInTheDocument();
+    expect(screen.getByText('Harry Potter')).toBeInTheDocument();
+    expect(screen.getByTestId('select button for Harry Potter')).toBeInTheDocument();
+    expect(screen.getByText('Hermione Granger')).toBeInTheDocument();
+    expect(screen.getByText('Ginny Weasley')).toBeInTheDocument();
+    expect(screen.getByText('Neville Longbottom')).toBeInTheDocument();
+    expect(screen.getByText('Parvati Patil')).toBeInTheDocument();
+    expect(screen.queryByText('Draco Malfoy')).toBeNull();
+    expect(screen.queryByText('Charity Burbage')).toBeNull();
+
+    userEvent.click(screen.getByTestId('select button for Ginny Weasley'));
+
+    expect(screen.getByText('You\'ve selected Ginny Weasley')).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
+
+    userEvent.click(screen.getByTestId('select button for Neville Longbottom'));
+
+    expect(screen.getByText('You\'ve selected Neville Longbottom')).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', {name: 'finalize'}));
+    const welcomeStudent = await waitFor(() => screen.getByText('Welcome, Neville Longbottom'));
+    expect(welcomeStudent).toBeInTheDocument();
   })
 })
