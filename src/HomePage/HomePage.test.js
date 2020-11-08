@@ -39,7 +39,7 @@ describe('HomePage', () => {
     expect(mockSetHouse).toHaveBeenCalledTimes(1);
   })
 
-  it('should show user which house is assigned', async () => {
+  it('should show user which house is assigned', () => {
     mockMyCharacter = null;
     mockHouse = 'Ravenclaw';
 
@@ -54,7 +54,7 @@ describe('HomePage', () => {
       </MemoryRouter>
     )
 
-    const result = await waitFor(() => screen.getByText('You are... Ravenclaw!'));
+    const result = screen.getByText('You are... Ravenclaw!');
     expect(result).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'choose character'})).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'learn about Ravenclaw'})).toBeInTheDocument();
@@ -62,7 +62,7 @@ describe('HomePage', () => {
     expect(mockGetStudentsByHouse).toHaveBeenCalledTimes(1);
   })
 
-  it('should change character button if a character has been finalized', async () => {
+  it('should change character button if a character has been finalized', () => {
     mockMyCharacter = {
       _id: 'jng7',
       alias: 'Moaning Myrtle',
@@ -91,7 +91,7 @@ describe('HomePage', () => {
       </MemoryRouter>
     )
 
-    const result = await waitFor(() => screen.getByText('You are... Ravenclaw!'));
+    const result = screen.getByText('You are... Ravenclaw!');
     expect(result).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'view character details'})).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'learn about Ravenclaw'})).toBeInTheDocument();

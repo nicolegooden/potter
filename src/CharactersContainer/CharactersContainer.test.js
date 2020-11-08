@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import CharactersContainer from './CharactersContainer.js';
@@ -54,7 +54,7 @@ describe('Characters Container', () => {
       ];
     })  
 
-  it('should render expected elements', async () => {
+  it('should render expected elements', () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
     const mockSetTemp = jest.fn();
@@ -76,7 +76,7 @@ describe('Characters Container', () => {
       </MemoryRouter>
     )
 
-    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    const name = screen.getByText('Ginny Weasley');
     expect(name).toBeInTheDocument();
     expect(screen.getByText('Neville Longbottom')).toBeInTheDocument();
     expect(screen.getByText('Harry Potter')).toBeInTheDocument();
@@ -92,7 +92,7 @@ describe('Characters Container', () => {
     expect(screen.getByTestId('select button for Parvati Patil')).toBeInTheDocument();
   })
 
-  it('should fire onClick method with correct arguments based on selecting a card', async () => {
+  it('should fire onClick method with correct arguments based on selecting a card', () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
     const mockSetTemp = jest.fn();
@@ -114,14 +114,14 @@ describe('Characters Container', () => {
       </MemoryRouter>
     )
 
-    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    const name = screen.getByText('Ginny Weasley');
     expect(name).toBeInTheDocument();
     userEvent.click(screen.getByTestId('select button for Harry Potter'));
     expect(mockSetTemp).toHaveBeenCalledTimes(1);
     expect(mockSetTemp).toHaveBeenCalledWith('Harry Potter', 'abc123');
   })
 
-  it('should show the character selected based on props', async () => {
+  it('should show the character selected based on props', () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
     const mockSetTemp = jest.fn();
@@ -143,13 +143,13 @@ describe('Characters Container', () => {
       </MemoryRouter>
     )
 
-    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    const name = screen.getByText('Ginny Weasley');
     expect(name).toBeInTheDocument();
     expect(screen.getByText('You\'ve selected Harry Potter')).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
   })
 
-  it('should call setCharacter when user finalizes character selection', async () => {
+  it('should call setCharacter when user finalizes character selection', () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
     const mockSetTemp = jest.fn();
@@ -171,7 +171,7 @@ describe('Characters Container', () => {
       </MemoryRouter>
     )
 
-    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    const name = screen.getByText('Ginny Weasley');
     expect(name).toBeInTheDocument();
     expect(screen.getByText('You\'ve selected Harry Potter')).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'finalize'})).toBeInTheDocument();
@@ -180,7 +180,7 @@ describe('Characters Container', () => {
     expect(mockSetCharacter).toHaveBeenCalledWith('abc123');
   })
 
-  it('should remove select button from all cards myCharacter exists', async () => {
+  it('should remove select button from all cards myCharacter exists', () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
     const mockSetTemp = jest.fn();
@@ -215,14 +215,14 @@ describe('Characters Container', () => {
       </MemoryRouter>
     )
 
-    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    const name = screen.getByText('Ginny Weasley');
     expect(name).toBeInTheDocument();
     expect(screen.getByText('Welcome, Harry Potter')).toBeInTheDocument();
     expect(screen.queryByRole('button', {name: 'finalize'})).toBeNull();
     expect(screen.queryByRole('button', {name: 'select'})).toBeNull();
   })
 
-  it('should allow user to select different characters before finalizing', async () => {
+  it('should allow user to select different characters before finalizing', () => {
     const mockHouse = 'Gryffindor';
     const mockSetCharacter = jest.fn();
     const mockSetTemp = jest.fn();
@@ -244,7 +244,7 @@ describe('Characters Container', () => {
       </MemoryRouter>
     )
 
-    const name = await waitFor(() => screen.getByText('Ginny Weasley'));
+    const name = screen.getByText('Ginny Weasley');
     expect(name).toBeInTheDocument();
     userEvent.click(screen.getByTestId('select button for Harry Potter'));
     expect(mockSetTemp).toHaveBeenCalledWith('Harry Potter', 'abc123');
