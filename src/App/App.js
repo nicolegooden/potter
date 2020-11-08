@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import CharactersContainer from '../CharactersContainer/CharactersContainer';
 import House from '../House/House';
 import CharacterDetails from '../CharacterDetails/CharacterDetails';
+import SpellsContainer from '../SpellsContainer/SpellsContainer';
 import { getSorted, getCharacters, getMyCharacter, getAllHouses } from '../apiCalls'
 
 class App extends Component {
@@ -105,6 +106,9 @@ class App extends Component {
             myCharacter={this.state.myCharacter}
             myID={this.state.myID}
           />
+        </Route>
+        <Route path='/spells'>
+          <SpellsContainer />
         </Route>
         <Route 
           path='/house/:houseName'
