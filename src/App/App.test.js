@@ -171,7 +171,7 @@ describe('App', () => {
     //add assertion for seeing spells content when spells link is clicked
   })
 
-  it('should allow user to be sorted, then choose a character', async () => {
+  it('should allow user to be sorted, choose a character, and see related details', async () => {
     render(
         <MemoryRouter>
           <App />
@@ -209,6 +209,39 @@ describe('App', () => {
 
     userEvent.click(screen.getByRole('button', {name: 'finalize'}));
     const welcomeStudent = await waitFor(() => screen.getByText('Welcome, Neville Longbottom'));
+
     expect(welcomeStudent).toBeInTheDocument();
+    expect(screen.queryByRole('button', {name: 'finalize'})).toBeNull();
+    expect(screen.queryByRole('button', {name: 'select'})).toBeNull();
+
+    userEvent.click(screen.getByText('home'));
+
+    expect(screen.getByText('You are... Gryffindor!')).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'view character details'})).toBeInTheDocument();
+
+    userEvent.click(screen.getByRole('button', {name: 'view character details'}));
+
+    expect(screen.getByText('Neville Longbottom')).toBeInTheDocument();
+    expect(screen.getByText('House: Gryffindor')).toBeInTheDocument();
+    expect(screen.getByText('Blood Status: pure-blood')).toBeInTheDocument();
+    expect(screen.getByText('Species: human')).toBeInTheDocument();
+    expect(screen.getByText('Boggart: Severus Snape')).toBeInTheDocument();
+    expect(screen.getByText('Attending: Hogwarts')).toBeInTheDocument();
+    expect(screen.getByText('Associations:')).toBeInTheDocument();
+
+    userEvent.click(screen.getByText('home'));
+    userEvent.click(screen.getByRole('button', {name: 'learn about Gryffindor'}));
+
+    expect(screen.getByText('Gryffindor')).toBeInTheDocument();
+    expect(screen.getByText('Head: Minerva McGonagall')).toBeInTheDocument();
+    expect(screen.getByText('Founder: Goderic Gryffindor')).toBeInTheDocument();
+    expect(screen.getByText('Ghost: Nearly Headless Nick')).toBeInTheDocument();
+    expect(screen.getByText('Mascot: lion')).toBeInTheDocument();
+    expect(screen.getByText('Values: courage bravery nerve chivalry')).toBeInTheDocument();
+    expect(screen.getByText('Colors: scarlet gold')).toBeInTheDocument();
+
+    userEvent.click(screen.getByText('home'));
+
+    // add to this replicated story once spells functionality is complete
   })
 })
