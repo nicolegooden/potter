@@ -19,7 +19,7 @@ class SpellsContainer extends Component {
   }
 
   displayAllSpellCards = () => {
-    if (this.state.allSpells) {
+    if (this.state.allSpells && this.state.matchingSpells.length === 0) {
     return this.state.allSpells.map(spell => {
       return (
         <article className='spell-card'>
@@ -28,7 +28,17 @@ class SpellsContainer extends Component {
           <h1 className='spell-detail'>{spell.effect}</h1>
           <button id={`add button for ${spell.spell}`} className='add-spell-button'>add</button>
         </article>
-      )
+      )})
+   } else {
+     return this.state.matchingSpells.map(match => {
+       return (
+       <article className='spell-card'>
+        <h1 className='spell-detail spell-title'>{match.spell}</h1>
+        <h1 className='spell-detail'>{match.type}</h1>
+        <h1 className='spell-detail'>{match.effect}</h1>
+        <button id={`add button for ${match.spell}`} className='add-spell-button'>add</button>
+      </article>
+       )
     })
    }
   }
@@ -48,17 +58,16 @@ class SpellsContainer extends Component {
     this.setState({error: ''});
     let formattedSearch = this.state.currentSearch.toLowerCase();
     let matchingSpells = this.state.allSpells.filter(spell => {
-      return spell.spell.toLowerCase().includes(formattedSearch);
+      return spell.spell.toLowerCase().includes(formattedSearch) || 
+        spell.effect.toLowerCase().includes(formattedSearch) || 
+        spell.type.toLowerCase().includes(formattedSearch);
     })
     if (matchingSpells.length === 0) {
-      matchingSpells = this.state.allSpells.filter(spell => {
-        return spell.effect.toLowerCase().includes(formattedSearch);
-      })
+      this.setState({error: 'Sorry, no spells found.  Try searching by name, effect, or type!'});
+      this.setState({matchingSpells: []}); 
+    } else {
+      this.setState({matchingSpells: matchingSpells})  
     }
-    if (matchingSpells.length === 0) {
-      this.setState({error: 'Sorry, no spells match your search'});
-    }
-    this.setState({matchingSpells: matchingSpells})
   }
 
   trackSearch = (event) => {
@@ -74,12 +83,16 @@ class SpellsContainer extends Component {
           <label htmlFor='browse spells input field'>
             <input 
               className='browse-spells-input' 
-              placeholder='search by name or effect'
+              placeholder='search by name, effect, or type'
               type='text'
               onChange={this.trackSearch}
             />
           </label>
-          <button onClick={this.browseSpells} disabled={!this.state.currentSearch} className='search-button'>search</button>
+          <button 
+            onClick={this.browseSpells} 
+            disabled={!this.state.currentSearch} 
+            className='search-button'
+            >search</button>
         </div>
          <h1 className='error'>{this.state.error}</h1>
         <section className='all-spells'>
