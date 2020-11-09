@@ -11,7 +11,8 @@ class SpellsContainer extends Component {
       error: '',
       currentSearch: '',
       matchingSpells: [],
-      allSpellsDisplayed: true
+      allSpellsDisplayed: true,
+      spellToPractice: null
     }
   }
 
@@ -29,6 +30,7 @@ class SpellsContainer extends Component {
           myCharacter={this.props.myCharacter}
           addSpell={this.props.addSpell}
           mySpells={this.props.mySpells}
+          declarePracticeSpell={this.declarePracticeSpell}
         />
       )})
    } else {
@@ -40,6 +42,7 @@ class SpellsContainer extends Component {
           myCharacter={this.props.myCharacter}
           addSpell={this.props.addSpell}
           mySpells={this.props.mySpells}
+          declarePracticeSpell={this.declarePracticeSpell}
       />
        )})}
   }
@@ -89,10 +92,34 @@ class SpellsContainer extends Component {
             myCharacter={this.props.myCharacter}
             addSpell={this.props.addSpell}
             mySpells={this.props.mySpells}
+            declarePracticeSpell={this.declarePracticeSpell}
          />
         )
       })} 
   }
+
+  declarePracticeSpell = (spell) => {
+    this.setState({spellToPractice: spell})
+  }
+
+  practiceSpell = () => {
+    if (this.state.spellToPractice) {
+    let resultOptions = [
+      `You're a wizard, ${this.props.myCharacter.name}`, 
+      `Fair attempt!`,
+      `Such rubbish! More practice needed`
+    ]
+    const result = Math.floor(Math.random() * resultOptions.length)
+    return (
+      <article className='practice-card'> 
+        <h1 className='spell-name'>{this.state.spellToPractice.spell}</h1>
+        <h1 className='practice-result'>{resultOptions[result]}</h1>
+        <button className='practice-again'>again</button>
+        <button className='exit-practice'>exit</button>
+      </article>
+    )
+    }
+  } 
 
   clearInput = () => {
     this.setState({currentSearch: ''});
@@ -104,6 +131,7 @@ class SpellsContainer extends Component {
         {this.showMessageForMySpells()}
         <section className='all-saved-spells'>
           {this.showSavedSpells()}
+          {this.practiceSpell()}
         </section>
         <div className='browse-input-container'>
           <h1>Browse Spells</h1>
