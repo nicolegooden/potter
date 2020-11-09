@@ -286,4 +286,61 @@ describe('SpellsContainer', () => {
 // all of these details will appear on the spell card in the inventory, and again in the browse section
   })
 
+it('should be able to practice a spell', async () => {
+    const mockMyCharacter = {
+        _id: 'dsflj45',
+       name: 'Parvati Patil',
+       bloodStatus: 'unknown',
+       species: 'human',
+       role: 'student',
+       house: 'Gryffindor' 
+   };
+   const mockMySpells = [
+    {
+        _id: 'f6',
+        spell: 'Depulso',
+        points: 0,
+        type: 'Charm',
+        effect: 'drives an object away'   
+    },
+    {
+        _id: 'g7',
+        spell: 'Duro',
+        points: 0,
+        type: 'Spell',
+        effect: 'makes objects hard'   
+    } 
+   ];
+   const mockSpellToPractice = {
+     _id: 'f6',
+     spell: 'Depulso',
+     points: 0,
+     type: 'Charm',
+     effect: 'drives an object away'   
+   };
+   
+   render(
+     <MemoryRouter>
+       <SpellsContainer 
+         myCharacter={mockMyCharacter}
+         mySpells={mockMySpells}
+         addSpell={mockAddSpell}
+         logPoints={mockLogPoints}
+         spellToPractice={mockSpellToPractice}
+         declarePracticeSpell={mockDeclarePracticeSpell}
+       />  
+     </MemoryRouter>
+   )
+
+   const spell = await waitFor(() => screen.getByText('Aberto'))
+   expect(spell).toBeInTheDocument();
+   expect(screen.getByRole('button', {name: 'log points & exit'})).toBeInTheDocument();
+   userEvent.click(screen.getByRole('button', {name: 'log points & exit'}));
+   expect(mockLogPoints).toHaveBeenCalledTimes(1);
+   expect(mockLogPoints).toHaveBeenCalledWith(3, mockSpellToPractice)
+   //this assertion on line 340 => the first argument of result will always be an integer
+   //this result integer will always be randomly generated, so sometimes this assertion
+   //passes, and sometimes it fails because the result is determined at random.
+
+})
 })
