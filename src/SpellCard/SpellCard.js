@@ -1,5 +1,6 @@
 import React from 'react';
 import './SpellCard.css';
+import PropTypes from 'prop-types';
 
 const SpellCard = (props) => {
   let button;
@@ -35,3 +36,11 @@ const SpellCard = (props) => {
 }
 
 export default SpellCard;
+
+SpellCard.propTypes = {
+  spell: PropTypes.object.isRequired,
+  myCharacter: PropTypes.object,
+  addSpell: PropTypes.func,
+  mySpells: PropTypes.array,
+  declarePracticeSpell: PropTypes.func
+}
