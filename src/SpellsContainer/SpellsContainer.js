@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SpellsContainer.css'
 import SpellCard from '../SpellCard/SpellCard';
 import { getSpells } from '../apiCalls';
+import PropTypes from 'prop-types';
 
 class SpellsContainer extends Component {
   constructor(props) {
@@ -100,10 +101,6 @@ class SpellsContainer extends Component {
       })} 
   }
 
-//   declarePracticeSpell = (spell) => {
-//     this.setState({spellToPractice: spell})
-//   }
-
   practiceSpell = () => {
     if (this.props.spellToPractice && this.state.currentSearch === '') {
     let resultOptions = [
@@ -163,3 +160,12 @@ class SpellsContainer extends Component {
 }
 
 export default SpellsContainer;
+
+SpellsContainer.propTypes = {
+  myCharacter: PropTypes.object,
+  mySpells: PropTypes.array,
+  addSpell: PropTypes.func,
+  logPoints: PropTypes.func,
+  spellToPractice: PropTypes.object,
+  declarePracticeSpell: PropTypes.func
+}
