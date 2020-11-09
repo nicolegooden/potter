@@ -8,6 +8,11 @@ import { getSpells } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
 
 describe('SpellsContainer', () => {
+
+  let mockDeclarePracticeSpell;
+  let mockAddSpell;
+  let mockLogPoints;
+
   beforeEach(() => {
     getSpells.mockResolvedValueOnce([
       {
@@ -59,9 +64,43 @@ describe('SpellsContainer', () => {
         effect: 'makes objects explode'   
       }
     ]);
+
+    mockDeclarePracticeSpell = jest.fn();
+    mockAddSpell = jest.fn();
+    mockLogPoints = jest.fn();
   })
 
   it('should show expected content when user has not chosen a character', async () => {
+    
+    const mockMyCharacter = null;
+    const mockMySpells = [];
+    const mockSpellToPractice = null;
+    
+    render(
+      <MemoryRouter>
+        <SpellsContainer 
+          myCharacter={mockMyCharacter}
+          mySpells={mockMySpells}
+          addSpell={mockAddSpell}
+          logPoints={mockLogPoints}
+          spellToPractice={mockSpellToPractice}
+          declarePracticeSpell={mockDeclarePracticeSpell}
+        />  
+      </MemoryRouter>
+    )
+    const prompt = screen.getByText('Please get sorted and choose a character to start saving spells!');
+    expect(prompt).toBeInTheDocument();
+    const spell = await waitFor(() => screen.getByText('Aberto'))
+    expect(spell).toBeInTheDocument();
+    expect(screen.getByText('opens objects')).toBeInTheDocument();
+    expect(screen.getByText('Depulso')).toBeInTheDocument();
+    expect(screen.queryByRole('button', {name: 'add'})).toBeNull();
+    expect(screen.getByRole('button', {name: 'search'})).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'search'})).toBeDisabled();
+    expect(screen.getByRole('button', {name: 'view all'})).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('search by name, effect, or type')).toBeInTheDocument();
+    expect(screen.getByText('Browse Spells')).toBeInTheDocument();
+
 
   })
 })
