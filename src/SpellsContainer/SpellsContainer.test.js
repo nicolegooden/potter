@@ -100,7 +100,51 @@ describe('SpellsContainer', () => {
     expect(screen.getByRole('button', {name: 'view all'})).toBeInTheDocument();
     expect(screen.getByPlaceholderText('search by name, effect, or type')).toBeInTheDocument();
     expect(screen.getByText('Browse Spells')).toBeInTheDocument();
+  })
 
+  it('should allow user to search for spells and view all spells after', async () => {
+    const mockMyCharacter = null;
+    const mockMySpells = [];
+    const mockSpellToPractice = null;
+    
+    render(
+      <MemoryRouter>
+        <SpellsContainer 
+          myCharacter={mockMyCharacter}
+          mySpells={mockMySpells}
+          addSpell={mockAddSpell}
+          logPoints={mockLogPoints}
+          spellToPractice={mockSpellToPractice}
+          declarePracticeSpell={mockDeclarePracticeSpell}
+        />  
+      </MemoryRouter>
+    )
 
+    const spell = await waitFor(() => screen.getByText('Aberto'))
+    expect(spell).toBeInTheDocument();
+    expect(screen.getByRole('button', {name: 'search'})).toBeDisabled();
+
+    userEvent.type(screen.getByPlaceholderText('search by name, effect, or type'), 'explo');
+    userEvent.click(screen.getByRole('button', {name: 'search'}));
+
+    expect(screen.getByText('Expulso')).toBeInTheDocument();
+    expect(screen.getByText('Bombarda Maxima')).toBeInTheDocument();
+    expect(screen.getByText('Bombarda')).toBeInTheDocument();
+    expect(screen.queryByText('Aberto')).toBeNull();
+    expect(screen.queryByText('Babbling Curse')).toBeNull();
+    expect(screen.queryByText('Duro')).toBeNull();
+    expect(screen.queryByText('Depulso')).toBeNull();
+    expect(screen.queryByText('Anapneo')).toBeNull();
+
+    userEvent.click(screen.getByRole('button', {name: 'view all'}))
+
+    expect(screen.getByText('Expulso')).toBeInTheDocument();
+    expect(screen.getByText('Bombarda Maxima')).toBeInTheDocument();
+    expect(screen.getByText('Bombarda')).toBeInTheDocument();
+    expect(screen.queryByText('Aberto')).toBeInTheDocument();
+    expect(screen.queryByText('Babbling Curse')).toBeInTheDocument();
+    expect(screen.queryByText('Duro')).toBeInTheDocument();
+    expect(screen.queryByText('Depulso')).toBeInTheDocument();
+    expect(screen.queryByText('Anapneo')).toBeInTheDocument();
   })
 })
