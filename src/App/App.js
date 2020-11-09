@@ -18,7 +18,8 @@ class App extends Component {
       allHouses: [],
       studentsByHouse: [],
       myName: '',
-      myCharacter: null
+      myCharacter: null, 
+      mySpells: []
     }
   }
 
@@ -82,6 +83,10 @@ class App extends Component {
     this.setState({myID: characterID})
   }
 
+  addSpell = (spell) => {
+    this.setState({mySpells: [...this.state.mySpells, spell]})
+  }
+
   render() {
     return (
       <main className='app-container'>
@@ -108,7 +113,11 @@ class App extends Component {
           />
         </Route>
         <Route path='/spells'>
-          <SpellsContainer />
+          <SpellsContainer 
+            myCharacter={this.state.myCharacter}
+            mySpells={this.state.mySpells}
+            addSpell={this.addSpell}
+          />
         </Route>
         <Route 
           path='/house/:houseName'

@@ -8,7 +8,6 @@ class SpellsContainer extends Component {
     super(props);
     this.state = {
       allSpells: [],
-      mySpells: [],
       error: '',
       currentSearch: '',
       matchingSpells: [],
@@ -28,8 +27,8 @@ class SpellsContainer extends Component {
           key={spell._id}
           spell={spell}
           myCharacter={this.props.myCharacter}
-          addSpell={this.addSpell}
-          mySpells={this.state.mySpells}
+          addSpell={this.props.addSpell}
+          mySpells={this.props.mySpells}
         />
       )})
    } else {
@@ -39,18 +38,14 @@ class SpellsContainer extends Component {
           key={match._id}
           spell={match}
           myCharacter={this.props.myCharacter}
-          addSpell={this.addSpell}
-          mySpells={this.state.mySpells}
+          addSpell={this.props.addSpell}
+          mySpells={this.props.mySpells}
       />
        )})}
   }
 
-  addSpell = (spell) => {
-    this.setState({mySpells: [...this.state.mySpells, spell]})
-  }
-
   showMessageForMySpells = () => {
-    if (this.props.myCharacter && this.state.mySpells.length > 0) {
+    if (this.props.myCharacter && this.props.mySpells.length > 0) {
       const firstName = this.props.myCharacter.name.split(' ')[0];
       return (<h1 className='spells-message'>{`${firstName}'s Spells`}</h1> ) 
     } else if (this.props.myCharacter) {
@@ -85,15 +80,15 @@ class SpellsContainer extends Component {
   }
 
   showSavedSpells = () => {
-    if (this.state.mySpells.length > 0) {
-      return this.state.mySpells.map(saved => {
+    if (this.props.mySpells.length > 0) {
+      return this.props.mySpells.map(saved => {
         return (
           <SpellCard 
             key={saved._id}
             spell={saved}
             myCharacter={this.props.myCharacter}
-            addSpell={this.addSpell}
-            mySpells={this.state.mySpells}
+            addSpell={this.props.addSpell}
+            mySpells={this.props.mySpells}
          />
         )
       })} 
@@ -107,7 +102,7 @@ class SpellsContainer extends Component {
     return (
       <section className='spells-container'>
         {this.showMessageForMySpells()}
-        <section className='all-spells'>
+        <section className='all-saved-spells'>
           {this.showSavedSpells()}
         </section>
         <div className='browse-input-container'>
