@@ -43,3 +43,14 @@ export const getAllHouses = async () => {
     console.log(error);
   }
 }
+
+export const getSpells = async () => {
+  const response = await fetch(`https://www.potterapi.com/v1/spells/${apiKey}`)
+  try {
+    if (response.ok) {
+      return response.json();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

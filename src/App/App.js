@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import CharactersContainer from '../CharactersContainer/CharactersContainer';
 import House from '../House/House';
 import CharacterDetails from '../CharacterDetails/CharacterDetails';
+import SpellsContainer from '../SpellsContainer/SpellsContainer';
 import { getSorted, getCharacters, getMyCharacter, getAllHouses } from '../apiCalls'
 
 class App extends Component {
@@ -17,7 +18,9 @@ class App extends Component {
       allHouses: [],
       studentsByHouse: [],
       myName: '',
-      myCharacter: null
+      myCharacter: null, 
+      mySpells: [],
+      spellToPractice: null
     }
   }
 
@@ -81,6 +84,25 @@ class App extends Component {
     this.setState({myID: characterID})
   }
 
+  addSpell = (spell) => {
+    this.setState({mySpells: [...this.state.mySpells, spell]})
+  }
+
+  logPoints = (result, spellToPractice) => {
+    let match = this.state.mySpells.find(spell => {
+      return spell === spellToPractice;
+    })
+    let matchIndex = this.state.mySpells.indexOf(match)
+     let newArray = [...this.state.mySpells]
+     newArray[matchIndex] = {...newArray[matchIndex], 
+      points: match.points + (result + 1)}
+     this.setState({mySpells: newArray, spellToPractice: null})
+  }
+
+  declarePracticeSpell = (spell) => {
+    this.setState({spellToPractice: spell})
+  }
+
   render() {
     return (
       <main className='app-container'>
@@ -104,6 +126,16 @@ class App extends Component {
             myName={this.state.myName}
             myCharacter={this.state.myCharacter}
             myID={this.state.myID}
+          />
+        </Route>
+        <Route path='/spells'>
+          <SpellsContainer 
+            myCharacter={this.state.myCharacter}
+            mySpells={this.state.mySpells}
+            addSpell={this.addSpell}
+            logPoints={this.logPoints}
+            spellToPractice={this.state.spellToPractice}
+            declarePracticeSpell={this.declarePracticeSpell}
           />
         </Route>
         <Route 
@@ -134,3 +166,15 @@ class App extends Component {
 }
 
 export default App;
+
+// console.log(matchIndex)
+    // this.setState(prevState => {
+    //  let mySpell = Object.assign({}, prevState.mySpells[matchIndex])
+    // //  console.log('prevState', prevState.mySpells[matchIndex])
+    // //  console.log('my spell', mySpell)
+    // //  console.log('my spell points', mySpell.points)
+    //  mySpell.points = mySpell.points += (result + 1) 
+    //  console.log('my final spell', mySpell)
+    //  return this.state.mySpells[mySpell] ;
+  //  }) 
+   // this.setState({currentPoints: result + 1})
