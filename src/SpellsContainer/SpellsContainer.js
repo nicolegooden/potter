@@ -25,18 +25,22 @@ class SpellsContainer extends Component {
     return this.state.allSpells.map(spell => {
       return (
         <SpellCard 
+          key={spell._id}
           spell={spell}
           myCharacter={this.props.myCharacter}
           addSpell={this.addSpell}
+          mySpells={this.state.mySpells}
         />
       )})
    } else {
      return this.state.matchingSpells.map(match => {
        return (
         <SpellCard 
+          key={match._id}
           spell={match}
           myCharacter={this.props.myCharacter}
           addSpell={this.addSpell}
+          mySpells={this.state.mySpells}
       />
        )})}
   }
@@ -85,9 +89,11 @@ class SpellsContainer extends Component {
       return this.state.mySpells.map(saved => {
         return (
           <SpellCard 
+            key={saved._id}
             spell={saved}
             myCharacter={this.props.myCharacter}
             addSpell={this.addSpell}
+            mySpells={this.state.mySpells}
          />
         )
       })} 
@@ -101,7 +107,9 @@ class SpellsContainer extends Component {
     return (
       <section className='spells-container'>
         {this.showMessageForMySpells()}
-        {this.showSavedSpells()}
+        <section className='all-spells'>
+          {this.showSavedSpells()}
+        </section>
         <div className='browse-input-container'>
           <h1>Browse Spells</h1>
           <label htmlFor='browse spells input field'>
