@@ -10,7 +10,8 @@ class SpellsContainer extends Component {
       mySpells: [],
       error: '',
       currentSearch: '',
-      matchingSpells: []
+      matchingSpells: [],
+      allSpellsDisplayed: true
     }
   }
 
@@ -19,7 +20,7 @@ class SpellsContainer extends Component {
   }
 
   displayAllSpellCards = () => {
-    if (this.state.allSpells && this.state.matchingSpells.length === 0) {
+    if (this.state.allSpells && this.state.matchingSpells.length === 0 && this.state.allSpellsDisplayed) {
     return this.state.allSpells.map(spell => {
       return (
         <article className='spell-card'>
@@ -55,7 +56,7 @@ class SpellsContainer extends Component {
   }
 
   browseSpells = () => {
-    this.setState({error: ''});
+    this.setState({allSpellsDisplayed: false, error: ''})
     let formattedSearch = this.state.currentSearch.toLowerCase();
     let matchingSpells = this.state.allSpells.filter(spell => {
       return spell.spell.toLowerCase().includes(formattedSearch) || 
@@ -63,8 +64,7 @@ class SpellsContainer extends Component {
         spell.type.toLowerCase().includes(formattedSearch);
     })
     if (matchingSpells.length === 0) {
-      this.setState({error: 'Sorry, no spells found.  Try searching by name, effect, or type!'});
-      this.setState({matchingSpells: []}); 
+      this.setState({error: 'Sorry, no spells found.  Try searching by name, effect, or type!', matchingSpells: []});
     } else {
       this.setState({matchingSpells: matchingSpells})  
     }
@@ -72,6 +72,10 @@ class SpellsContainer extends Component {
 
   trackSearch = (event) => {
     this.setState({currentSearch: event.target.value});
+  }
+
+  viewAllSpells = () => {
+    this.setState({allSpellsDisplayed: true, error: '', matchingSpells: []});
   }
 
   render() {
@@ -93,6 +97,7 @@ class SpellsContainer extends Component {
             disabled={!this.state.currentSearch} 
             className='search-button'
             >search</button>
+            <button onClick={this.viewAllSpells} className='view-all-button'>view all</button>
         </div>
          <h1 className='error'>{this.state.error}</h1>
         <section className='all-spells'>
