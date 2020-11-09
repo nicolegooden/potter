@@ -12,7 +12,8 @@ class SpellsContainer extends Component {
       currentSearch: '',
       matchingSpells: [],
       allSpellsDisplayed: true,
-      spellToPractice: null
+      spellToPractice: null,
+      currentPoints: 0
     }
   }
 
@@ -103,22 +104,27 @@ class SpellsContainer extends Component {
   }
 
   practiceSpell = () => {
-    if (this.state.spellToPractice) {
+    if (this.state.spellToPractice && this.state.currentSearch === '' && this.state.currentPoints === 0) {
     let resultOptions = [
-      `You're a wizard, ${this.props.myCharacter.name}`, 
+      `Such rubbish!`,
       `Fair attempt!`,
-      `Such rubbish! More practice needed`
+      `You're a wizard, ${this.props.myCharacter.name}!`, 
     ]
     const result = Math.floor(Math.random() * resultOptions.length)
     return (
       <article className='practice-card'> 
         <h1 className='spell-name'>{this.state.spellToPractice.spell}</h1>
         <h1 className='practice-result'>{resultOptions[result]}</h1>
-        <button className='exit-practice'>log points & exit</button>
+        <h1 className='practice-points'>{`${result + 1} point(s) awarded`}</h1>
+        <button onClick={() => this.logPoints(result)} className='exit-practice'>log points & exit</button>
       </article>
     )
     }
   } 
+
+  logPoints = (result) => {
+    this.setState({currentPoints: result + 1})
+  }
 
   clearInput = () => {
     this.setState({currentSearch: ''});
