@@ -233,5 +233,57 @@ describe('SpellsContainer', () => {
       })
   })
 
-  
+  it('should show the user\'s spells', async () => {
+    const mockMyCharacter = {
+        _id: 'dsflj45',
+       name: 'Parvati Patil',
+       bloodStatus: 'unknown',
+       species: 'human',
+       role: 'student',
+       house: 'Gryffindor' 
+   };
+   const mockMySpells = [
+    {
+        _id: 'f6',
+        spell: 'Depulso',
+        points: 0,
+        type: 'Charm',
+        effect: 'drives an object away'   
+    },
+    {
+        _id: 'g7',
+        spell: 'Duro',
+        points: 0,
+        type: 'Spell',
+        effect: 'makes objects hard'   
+    } 
+   ];
+   const mockSpellToPractice = null;
+   
+   render(
+     <MemoryRouter>
+       <SpellsContainer 
+         myCharacter={mockMyCharacter}
+         mySpells={mockMySpells}
+         addSpell={mockAddSpell}
+         logPoints={mockLogPoints}
+         spellToPractice={mockSpellToPractice}
+         declarePracticeSpell={mockDeclarePracticeSpell}
+       />  
+     </MemoryRouter>
+   )
+
+   const spell = await waitFor(() => screen.getByText('Aberto'))
+   expect(spell).toBeInTheDocument();
+   expect(screen.getByText('Parvati\'s Spells')).toBeInTheDocument();
+   expect(screen.queryByTestId('add button for f6')).toBeNull();
+   expect(screen.queryByTestId('add button for g7')).toBeNull();
+//    expect(screen.queryAllByTestId('practice button for f6')).toBeInTheDocument();
+//    expect(screen.getByTestId('practice button for g7')).toBeInTheDocument();
+// ^ I have two practice buttons for each spell card that is saved in mySpells.  
+// My test error says that an array is being received (as expected) but I don't know how to test for this.
+// the same goes for testing that points and mastery status appear in the document
+// all of these details will appear on the spell card in the inventory, and again in the browse section
+  })
+
 })
