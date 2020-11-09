@@ -12,13 +12,16 @@ class SpellsContainer extends Component {
       currentSearch: '',
       matchingSpells: [],
       allSpellsDisplayed: true,
-      spellToPractice: null,
-      currentPoints: 0
+    //   spellToPractice: null,
     }
   }
 
-  componentDidMount() {
-    getSpells().then((spells) => this.setState({allSpells: spells}))
+  componentDidMount = async () => {
+    await getSpells().then((spells) => this.setState({allSpells: spells}))
+    this.state.allSpells.forEach(spell => {
+      spell.points = 0;
+      spell.mastery = false;
+    })
   }
 
   displayAllSpellCards = () => {
@@ -31,7 +34,7 @@ class SpellsContainer extends Component {
           myCharacter={this.props.myCharacter}
           addSpell={this.props.addSpell}
           mySpells={this.props.mySpells}
-          declarePracticeSpell={this.declarePracticeSpell}
+          declarePracticeSpell={this.props.declarePracticeSpell}
         />
       )})
    } else {
@@ -43,7 +46,7 @@ class SpellsContainer extends Component {
           myCharacter={this.props.myCharacter}
           addSpell={this.props.addSpell}
           mySpells={this.props.mySpells}
-          declarePracticeSpell={this.declarePracticeSpell}
+          declarePracticeSpell={this.props.declarePracticeSpell}
       />
        )})}
   }
@@ -93,18 +96,18 @@ class SpellsContainer extends Component {
             myCharacter={this.props.myCharacter}
             addSpell={this.props.addSpell}
             mySpells={this.props.mySpells}
-            declarePracticeSpell={this.declarePracticeSpell}
+            declarePracticeSpell={this.props.declarePracticeSpell}
          />
         )
       })} 
   }
 
-  declarePracticeSpell = (spell) => {
-    this.setState({spellToPractice: spell})
-  }
+//   declarePracticeSpell = (spell) => {
+//     this.setState({spellToPractice: spell})
+//   }
 
   practiceSpell = () => {
-    if (this.state.spellToPractice && this.state.currentSearch === '' && this.state.currentPoints === 0) {
+    if (this.props.spellToPractice && this.state.currentSearch === '') {
     let resultOptions = [
       `Such rubbish!`,
       `Fair attempt!`,
@@ -113,18 +116,14 @@ class SpellsContainer extends Component {
     const result = Math.floor(Math.random() * resultOptions.length)
     return (
       <article className='practice-card'> 
-        <h1 className='spell-name'>{this.state.spellToPractice.spell}</h1>
+        <h1 className='spell-name'>{this.props.spellToPractice.spell}</h1>
         <h1 className='practice-result'>{resultOptions[result]}</h1>
         <h1 className='practice-points'>{`${result + 1} point(s) awarded`}</h1>
-        <button onClick={() => this.logPoints(result)} className='exit-practice'>log points & exit</button>
+        <button onClick={() => this.props.logPoints(result, this.props.spellToPractice)} className='exit-practice'>log points & exit</button>
       </article>
     )
     }
   } 
-
-  logPoints = (result) => {
-    this.setState({currentPoints: result + 1})
-  }
 
   clearInput = () => {
     this.setState({currentSearch: ''});
