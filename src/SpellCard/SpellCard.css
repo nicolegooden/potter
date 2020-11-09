@@ -1,10 +1,10 @@
-.add-spell-button {
+.add-spell-button, .practice-spell-button {
     margin-left: 10em;
     box-shadow: 2px 2px 2px black;
     border-radius: 20%;
 }
 
-.add-spell-button:hover {
+.add-spell-button:hover, .practice-spell-button:hover {
   box-shadow: 3px 3px 5px black;
   cursor: pointer;
   background-color: #E0F8F8;
