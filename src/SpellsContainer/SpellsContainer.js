@@ -114,8 +114,7 @@ class SpellsContainer extends Component {
       <article className='practice-card'> 
         <h1 className='spell-name'>{this.state.spellToPractice.spell}</h1>
         <h1 className='practice-result'>{resultOptions[result]}</h1>
-        <button className='practice-again'>again</button>
-        <button className='exit-practice'>exit</button>
+        <button className='exit-practice'>log points & exit</button>
       </article>
     )
     }
