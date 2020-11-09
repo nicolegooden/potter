@@ -12,7 +12,6 @@ class SpellsContainer extends Component {
       currentSearch: '',
       matchingSpells: [],
       allSpellsDisplayed: true,
-    //   spellToPractice: null,
     }
   }
 
@@ -20,7 +19,6 @@ class SpellsContainer extends Component {
     await getSpells().then((spells) => this.setState({allSpells: spells}))
     this.state.allSpells.forEach(spell => {
       spell.points = 0;
-      spell.mastery = false;
     })
   }
 
@@ -58,7 +56,7 @@ class SpellsContainer extends Component {
     } else if (this.props.myCharacter) {
       return <h1 className='spells-message'>Your inventory is empty</h1>  
     } else {
-      return <h1 className='spells-message'>Please get assigned a house and choose a character to start saving spells!</h1>  
+      return <h1 className='spells-message'>Please get sorted and choose a character to start saving spells!</h1>  
     }
   }
 
