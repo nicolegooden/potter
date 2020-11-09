@@ -20,6 +20,10 @@ class SpellsContainer extends Component {
   }
 
   displayAllSpellCards = () => {
+    let button;
+    if (this.props.myCharacter) {
+      button = <button className='add-spell-button'>add</button>
+    }
     if (this.state.allSpells && this.state.matchingSpells.length === 0 && this.state.allSpellsDisplayed) {
     return this.state.allSpells.map(spell => {
       return (
@@ -27,7 +31,7 @@ class SpellsContainer extends Component {
           <h1 className='spell-detail spell-title'>{spell.spell}</h1>
           <h1 className='spell-detail'>{spell.type}</h1>
           <h1 className='spell-detail'>{spell.effect}</h1>
-          <button id={`add button for ${spell.spell}`} className='add-spell-button'>add</button>
+          {button}
         </article>
       )})
    } else {
@@ -37,11 +41,9 @@ class SpellsContainer extends Component {
         <h1 className='spell-detail spell-title'>{match.spell}</h1>
         <h1 className='spell-detail'>{match.type}</h1>
         <h1 className='spell-detail'>{match.effect}</h1>
-        <button id={`add button for ${match.spell}`} className='add-spell-button'>add</button>
+        {button}
       </article>
-       )
-    })
-   }
+       )})}
   }
 
   showMessageForMySpells = () => {
