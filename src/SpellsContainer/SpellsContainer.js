@@ -7,7 +7,9 @@ class SpellsContainer extends Component {
     super(props);
     this.state = {
       allSpells: [],
-      mySpells: []
+      mySpells: [],
+    //   error: ''
+      currentSearch: ''
     }
   }
 
@@ -23,7 +25,7 @@ class SpellsContainer extends Component {
           <h1 className='spell-detail spell-title'>{spell.spell}</h1>
           <h1 className='spell-detail'>{spell.type}</h1>
           <h1 className='spell-detail'>{spell.effect}</h1>
-          <button className='add-spell-button'>add</button>
+          <button id={`add button for ${spell.spell}`} className='add-spell-button'>add</button>
         </article>
       )
     })
@@ -41,9 +43,18 @@ class SpellsContainer extends Component {
     }
   }
 
+//   browseSpells = () => {
+//     if 
+//   }
+
+  trackSearch = (event) => {
+    this.setState({currentSearch: event.target.value})
+  }
+
   render() {
     return (
       <section className='spells-container'>
+        {/* <h1 className='error'>{this.state.error}</h1> */}
         {this.showMessageForMySpells()}
         <div className='browse-input-container'>
           <h1>Browse Spells</h1>
@@ -52,14 +63,14 @@ class SpellsContainer extends Component {
               className='browse-spells-input' 
               placeholder='search by name or effect'
               type='text'
+              onChange={this.trackSearch}
             />
           </label>
-          <button className='search-button'>search</button>
+          <button onClick={this.browseSpells} className='search-button'>search</button>
         </div>
         <section className='all-spells'>
           {this.displayAllSpellCards()}
         </section>
-        {/* <button>view all spells</button> */}
       </section>
     )
   }
