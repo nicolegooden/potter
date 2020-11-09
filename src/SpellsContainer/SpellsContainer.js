@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SpellsContainer.css'
 import { getSpells } from '../apiCalls';
 
 class SpellsContainer extends Component {
@@ -14,6 +15,21 @@ class SpellsContainer extends Component {
     getSpells().then((spells) => this.setState({allSpells: spells}))
   }
 
+  displayAllSpellCards = () => {
+    if (this.state.allSpells) {
+    return this.state.allSpells.map(spell => {
+      return (
+        <article className='spell-card'>
+          <h1 className='spell-detail spell-title'>{spell.spell}</h1>
+          <h1 className='spell-detail'>{spell.type}</h1>
+          <h1 className='spell-detail'>{spell.effect}</h1>
+          <button className='add-spell-button'>add</button>
+        </article>
+      )
+    })
+   }
+  }
+
   showMessageForMySpells = () => {
     if (this.props.myCharacter && this.state.mySpells.length > 0) {
       const firstName = this.props.myCharacter.name.split(' ')[0];
@@ -27,10 +43,13 @@ class SpellsContainer extends Component {
 
   render() {
     return (
-      <section>
+      <section className='spells-container'>
         {this.showMessageForMySpells()}
         <h1>Browse Spells</h1>
-        <button>view all spells</button>
+        <section className='all-spells'>
+          {this.displayAllSpellCards()}
+        </section>
+        {/* <button>view all spells</button> */}
       </section>
     )
   }
