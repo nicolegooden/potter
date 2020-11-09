@@ -1,0 +1,38 @@
+.spell-card {
+  background-color: white;
+  margin: 2em;
+  border-radius: 6%;
+  background-color: #f2f2dc;
+  border: solid;
+  text-align: center;
+}
+
+.spell-title {
+  font-size: 1.5em;
+}
+
+.all-spells {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background-color: #839898;
+}
+
+.spells-container {
+    background-image:url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 20em;
+  }
+
+.add-spell-button {
+  margin-left: 10em;
+  box-shadow: 2px 2px 2px black;
+  border-radius: 20%;
+}
+
+.add-spell-button:hover {
+  box-shadow: 3px 3px 5px black;
+  cursor: pointer;
+  background-color: #E0F8F8;
+}
