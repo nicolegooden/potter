@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SpellsContainer.css'
+import SpellCard from '../SpellCard/SpellCard';
 import { getSpells } from '../apiCalls';
 
 class SpellsContainer extends Component {
@@ -20,30 +21,28 @@ class SpellsContainer extends Component {
   }
 
   displayAllSpellCards = () => {
-    let button;
-    if (this.props.myCharacter) {
-      button = <button className='add-spell-button'>add</button>
-    }
     if (this.state.allSpells && this.state.matchingSpells.length === 0 && this.state.allSpellsDisplayed) {
     return this.state.allSpells.map(spell => {
       return (
-        <article className='spell-card'>
-          <h1 className='spell-detail spell-title'>{spell.spell}</h1>
-          <h1 className='spell-detail'>{spell.type}</h1>
-          <h1 className='spell-detail'>{spell.effect}</h1>
-          {button}
-        </article>
+        <SpellCard 
+          spell={spell}
+          myCharacter={this.props.myCharacter}
+          addSpell={this.addSpell}
+        />
       )})
    } else {
      return this.state.matchingSpells.map(match => {
        return (
-       <article className='spell-card'>
-        <h1 className='spell-detail spell-title'>{match.spell}</h1>
-        <h1 className='spell-detail'>{match.type}</h1>
-        <h1 className='spell-detail'>{match.effect}</h1>
-        {button}
-      </article>
+        <SpellCard 
+          spell={match}
+          myCharacter={this.props.myCharacter}
+          addSpell={this.addSpell}
+      />
        )})}
+  }
+
+  addSpell = (spell) => {
+    this.setState({mySpells: [...this.state.mySpells, spell]})
   }
 
   showMessageForMySpells = () => {
@@ -70,6 +69,7 @@ class SpellsContainer extends Component {
     } else {
       this.setState({matchingSpells: matchingSpells})  
     }
+    this.clearInput();
   }
 
   trackSearch = (event) => {
@@ -80,10 +80,28 @@ class SpellsContainer extends Component {
     this.setState({allSpellsDisplayed: true, error: '', matchingSpells: []});
   }
 
+  showSavedSpells = () => {
+    if (this.state.mySpells.length > 0) {
+      return this.state.mySpells.map(saved => {
+        return (
+          <SpellCard 
+            spell={saved}
+            myCharacter={this.props.myCharacter}
+            addSpell={this.addSpell}
+         />
+        )
+      })} 
+  }
+
+  clearInput = () => {
+    this.setState({currentSearch: ''});
+  }
+
   render() {
     return (
       <section className='spells-container'>
         {this.showMessageForMySpells()}
+        {this.showSavedSpells()}
         <div className='browse-input-container'>
           <h1>Browse Spells</h1>
           <label htmlFor='browse spells input field'>
@@ -91,6 +109,7 @@ class SpellsContainer extends Component {
               className='browse-spells-input' 
               placeholder='search by name, effect, or type'
               type='text'
+              value={this.state.currentSearch}
               onChange={this.trackSearch}
             />
           </label>
@@ -101,7 +120,7 @@ class SpellsContainer extends Component {
             >search</button>
             <button onClick={this.viewAllSpells} className='view-all-button'>view all</button>
         </div>
-         <h1 className='error'>{this.state.error}</h1>
+         <h3 className='error'>{this.state.error}</h3>
         <section className='all-spells'>
           {this.displayAllSpellCards()}
         </section>
