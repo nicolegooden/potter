@@ -147,4 +147,41 @@ describe('SpellsContainer', () => {
     expect(screen.queryByText('Depulso')).toBeInTheDocument();
     expect(screen.queryByText('Anapneo')).toBeInTheDocument();
   })
+
+  it('should show user an error when no spells match the search', async () => {
+    const mockMyCharacter = null;
+    const mockMySpells = [];
+    const mockSpellToPractice = null;
+    
+    render(
+      <MemoryRouter>
+        <SpellsContainer 
+          myCharacter={mockMyCharacter}
+          mySpells={mockMySpells}
+          addSpell={mockAddSpell}
+          logPoints={mockLogPoints}
+          spellToPractice={mockSpellToPractice}
+          declarePracticeSpell={mockDeclarePracticeSpell}
+        />  
+      </MemoryRouter>
+    )
+
+    const spell = await waitFor(() => screen.getByText('Aberto'))
+    expect(spell).toBeInTheDocument();
+
+    userEvent.type(screen.getByPlaceholderText('search by name, effect, or type'), 'hermione');
+    userEvent.click(screen.getByRole('button', {name: 'search'}));
+
+    expect(screen.getByRole('button', {name: 'search'})).toBeDisabled();
+    expect(screen.getByText('Sorry, no spells found. Try searching by name, effect, or type!')).toBeInTheDocument();
+
+    expect(screen.queryByText('Expulso')).toBeNull();
+    expect(screen.queryByText('Bombarda Maxima')).toBeNull();
+    expect(screen.queryByText('Bombarda')).toBeNull();
+    expect(screen.queryByText('Aberto')).toBeNull();
+    expect(screen.queryByText('Babbling Curse')).toBeNull();
+    expect(screen.queryByText('Duro')).toBeNull();
+    expect(screen.queryByText('Depulso')).toBeNull();
+    expect(screen.queryByText('Anapneo')).toBeNull();
+  })
 })
