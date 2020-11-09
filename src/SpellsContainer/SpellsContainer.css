@@ -32,7 +32,7 @@
   border-radius: 20%;
 }
 
-.add-spell-button:hover, .search-button:hover {
+.add-spell-button:hover, .search-button:hover:enabled {
   box-shadow: 3px 3px 5px black;
   cursor: pointer;
   background-color: #E0F8F8;

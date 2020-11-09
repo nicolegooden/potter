@@ -43,9 +43,13 @@ class SpellsContainer extends Component {
     }
   }
 
-//   browseSpells = () => {
-//     if 
-//   }
+  browseSpells = () => {
+    if (this.state.currentSearch) {
+      
+    } else {
+      
+    }
+  }
 
   trackSearch = (event) => {
     this.setState({currentSearch: event.target.value})
@@ -66,7 +70,7 @@ class SpellsContainer extends Component {
               onChange={this.trackSearch}
             />
           </label>
-          <button onClick={this.browseSpells} className='search-button'>search</button>
+          <button onClick={this.browseSpells} disabled={!this.state.currentSearch} className='search-button'>search</button>
         </div>
         <section className='all-spells'>
           {this.displayAllSpellCards()}
