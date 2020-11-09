@@ -8,8 +8,9 @@ class SpellsContainer extends Component {
     this.state = {
       allSpells: [],
       mySpells: [],
-    //   error: ''
-      currentSearch: ''
+      error: '',
+      currentSearch: '',
+      matchingSpells: []
     }
   }
 
@@ -44,21 +45,29 @@ class SpellsContainer extends Component {
   }
 
   browseSpells = () => {
-    if (this.state.currentSearch) {
-      
-    } else {
-      
+    this.setState({error: ''});
+    let formattedSearch = this.state.currentSearch.toLowerCase();
+    let matchingSpells = this.state.allSpells.filter(spell => {
+      return spell.spell.toLowerCase().includes(formattedSearch);
+    })
+    if (matchingSpells.length === 0) {
+      matchingSpells = this.state.allSpells.filter(spell => {
+        return spell.effect.toLowerCase().includes(formattedSearch);
+      })
     }
+    if (matchingSpells.length === 0) {
+      this.setState({error: 'Sorry, no spells match your search'});
+    }
+    this.setState({matchingSpells: matchingSpells})
   }
 
   trackSearch = (event) => {
-    this.setState({currentSearch: event.target.value})
+    this.setState({currentSearch: event.target.value});
   }
 
   render() {
     return (
       <section className='spells-container'>
-        {/* <h1 className='error'>{this.state.error}</h1> */}
         {this.showMessageForMySpells()}
         <div className='browse-input-container'>
           <h1>Browse Spells</h1>
@@ -72,6 +81,7 @@ class SpellsContainer extends Component {
           </label>
           <button onClick={this.browseSpells} disabled={!this.state.currentSearch} className='search-button'>search</button>
         </div>
+         <h1 className='error'>{this.state.error}</h1>
         <section className='all-spells'>
           {this.displayAllSpellCards()}
         </section>
