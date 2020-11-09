@@ -45,7 +45,17 @@ class SpellsContainer extends Component {
     return (
       <section className='spells-container'>
         {this.showMessageForMySpells()}
-        <h1>Browse Spells</h1>
+        <div className='browse-input-container'>
+          <h1>Browse Spells</h1>
+          <label htmlFor='browse spells input field'>
+            <input 
+              className='browse-spells-input' 
+              placeholder='search by name or effect'
+              type='text'
+            />
+          </label>
+          <button className='search-button'>search</button>
+        </div>
         <section className='all-spells'>
           {this.displayAllSpellCards()}
         </section>
