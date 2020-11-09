@@ -222,5 +222,16 @@ describe('SpellsContainer', () => {
     expect(screen.getByTestId('add button for g7')).toBeInTheDocument();
     expect(screen.getByTestId('add button for h8')).toBeInTheDocument();
 
+    userEvent.click(screen.getByTestId('add button for e5'));
+    expect(mockAddSpell).toHaveBeenCalledTimes(1);
+    expect(mockAddSpell).toHaveBeenCalledWith( {
+        _id: 'e5',
+        spell: 'Bombarda Maxima',
+        points: 0,
+        type: 'Spell',
+        effect: 'causes large explosions'   
+      })
   })
+
+  
 })
