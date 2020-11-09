@@ -184,4 +184,43 @@ describe('SpellsContainer', () => {
     expect(screen.queryByText('Depulso')).toBeNull();
     expect(screen.queryByText('Anapneo')).toBeNull();
   })
+
+  it('should show a new message and add buttons when character is valid', async () => {
+    const mockMyCharacter = {
+         _id: 'dsflj45',
+        name: 'Parvati Patil',
+        bloodStatus: 'unknown',
+        species: 'human',
+        role: 'student',
+        house: 'Gryffindor' 
+    };
+    const mockMySpells = [];
+    const mockSpellToPractice = null;
+    
+    render(
+      <MemoryRouter>
+        <SpellsContainer 
+          myCharacter={mockMyCharacter}
+          mySpells={mockMySpells}
+          addSpell={mockAddSpell}
+          logPoints={mockLogPoints}
+          spellToPractice={mockSpellToPractice}
+          declarePracticeSpell={mockDeclarePracticeSpell}
+        />  
+      </MemoryRouter>
+    )
+
+    const spell = await waitFor(() => screen.getByText('Aberto'))
+    expect(spell).toBeInTheDocument();
+    expect(screen.getByText('Your inventory is empty')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for a1')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for b2')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for c3')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for d4')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for e5')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for f6')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for g7')).toBeInTheDocument();
+    expect(screen.getByTestId('add button for h8')).toBeInTheDocument();
+
+  })
 })
