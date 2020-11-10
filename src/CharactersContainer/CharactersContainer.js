@@ -30,8 +30,10 @@ const CharactersContainer = (props) => {
     <article className='message-article'>
       <h1 className='characters-container-message'>Welcome, {props.myCharacter.name}</h1>
     </article>)
-  } else {
+  } else if (props.house) {
     message = <h1 className='characters-container-message'>Select a character</h1>
+  } else {
+    message = <h1 className='characters-container-message'>Get sorted & come back to select a character from your house!</h1>
   }
 
   return (
