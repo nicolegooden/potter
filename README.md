@@ -9,9 +9,40 @@ As users arrive at the homepage, they are prompted to receive a house assignment
 
 ### Tech
 
-This application was developed with React, React Router, and Asynchronous JavaScript. Dynamic routing was implemented in order to determine the render for the house details view and the character details view. Testing was supported by React Testing Library, Jest, and Node. 
+This application was developed with React, React Router, and Asynchronous JavaScript for network requests to the [Potter API](https://www.potterapi.com/). Dynamic routing was implemented in order to determine the render for the house details view and the character details view. Testing was supported by React Testing Library, Jest, and Node. 
 
 ### Installation 
+
+Terminal:
+
++ Clone: Run `git clone git@github.com:nicolegooden/potter.git` 
++ Transition to repo locally: Run `cd potter`
++ Install packages: Run `npm i` or `npm install`
++ Open app in browser: Run `npm start`
+
+The application should run on `localhost:3000`.
+
+### User Interaction
+
+<img src="https://media.giphy.com/media/A9oObDN4l9Yd2Zlz5r/giphy.gif" height=auto width=75%/>
+
+<img src="https://media.giphy.com/media/W6AZfQcb4gbQyuRAX8/giphy.gif" height=auto width=75%/>
+
+<img src="https://media.giphy.com/media/oaVrxsgFkKaM8VMUnQ/giphy.gif" height=auto width=75%/>
+
+<img src="https://media.giphy.com/media/rJjAYLzcT80G8DrWEM/giphy.gif" height=auto width=75%/>
+
+### Wins
+
+
+
+
+### Challenges
+
+
+## Next Steps
+
+
 
 
 
