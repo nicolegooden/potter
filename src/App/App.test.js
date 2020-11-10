@@ -10,7 +10,6 @@ jest.mock('../apiCalls.js');
 describe('App', () => {
 
   beforeEach(() => {
-    getSorted.mockResolvedValueOnce('Gryffindor');
     getCharacters.mockResolvedValueOnce([
         {
             _id: 'abc123',
@@ -193,6 +192,9 @@ describe('App', () => {
   })
 
   it('should render Header and Homepage', () => {
+
+    getSorted.mockResolvedValueOnce('Gryffindor');
+
     render(
       <MemoryRouter>
         <App />
@@ -209,6 +211,9 @@ describe('App', () => {
   })
 
   it('should bring user to expected page when corresponding nav link is clicked', () => {
+    
+    getSorted.mockResolvedValueOnce('Gryffindor');
+
     render(
       <MemoryRouter>
         <App />
@@ -223,6 +228,9 @@ describe('App', () => {
   })
 
   it('should allow user to be sorted, choose a character, and see related details', async () => {
+    
+    getSorted.mockResolvedValueOnce('Gryffindor');
+
     render(
         <MemoryRouter>
           <App />
@@ -303,5 +311,22 @@ describe('App', () => {
     
     userEvent.click(screen.getByTestId('add button for a1'));
     expect(screen.queryByTestId('add button for a1')).toBeNull();
+  })
+
+  it('should tell the user if request for house failed', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    )
+
+    getSorted.mockResolvedValueOnce('');
+
+    userEvent.click(screen.getByRole('button', {name: 'find my house'}));
+    const error = await waitFor(() => screen.getByText('Sorting hat results are inconclusive.  Try again.'));
+    expect(error).toBeInTheDocument();
+
+    //this is my attempt at testing error handling.  Wondering if my error handling is incorrect
+    //in App, or if I should be testing differently.  Any feedback on this?
   })
 })
