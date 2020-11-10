@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+## Potter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*Potter* is a React application built by [Nicole Gooden](https://github.com/nicolegooden).
 
-## Available Scripts
+### Overview
 
-In the project directory, you can run:
+*Potter* is an interactive, story-based application inspired by the Harry Potter series.  
+As users arrive at the homepage, they are prompted to receive a house assignment from the sorting hat, then choose a character from their assigned house.  Users can view more details about their character and their house from the homepage.  Additional functionality exists in the spells section.  Users can browse all of the available spells, search for spells by typing into the input field, and see their matching results based on spell name, spell effect, or spell type.  Also, once users have finalized a character to embody, they can add specific spells to their personal inventory, then engage in a practice session through which they receive practice results and earn spell points accordingly.  Once a user reaches 15 points for practicing a spell, they are congratulated with mastery.
 
-### `npm start`
+### Tech
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This application was developed with React, React Router, and Asynchronous JavaScript for network requests to the [Potter API](https://www.potterapi.com/). Dynamic routing was implemented in order to determine the render for the house details view and the character details view. Testing was supported by React Testing Library, Jest, and Node. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Installation 
 
-### `npm test`
+Terminal:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
++ Clone: Run `git clone git@github.com:nicolegooden/potter.git` 
++ Transition to repo locally: Run `cd potter`
++ Install packages: Run `npm i` or `npm install`
++ Open app in browser: Run `npm start`
 
-### `npm run build`
+The application should run on `localhost:3000`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### User Interaction
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://media.giphy.com/media/A9oObDN4l9Yd2Zlz5r/giphy.gif" height=auto width=75%/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="https://media.giphy.com/media/W6AZfQcb4gbQyuRAX8/giphy.gif" height=auto width=75%/>
 
-### `npm run eject`
+<img src="https://media.giphy.com/media/oaVrxsgFkKaM8VMUnQ/giphy.gif" height=auto width=75%/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="https://media.giphy.com/media/rJjAYLzcT80G8DrWEM/giphy.gif" height=auto width=75%/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Wins
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Challenges
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Next Steps
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
