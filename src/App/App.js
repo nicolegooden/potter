@@ -41,7 +41,9 @@ class App extends Component {
   setAllHouses = () => {
     getAllHouses()
     .then((houses) => {
-      houses ? this.setState({allHouses: houses}) : this.setState({error: 'No houses available.'})
+      houses ? 
+      this.setState({allHouses: houses}) : 
+      this.setState({error: 'No houses available.'})
     })
   }
 
@@ -51,7 +53,9 @@ class App extends Component {
       const students = characters.filter(char => {
         return char.role === 'student'
       })
-      students ? this.setState({allStudents: students}) : this.setState({error: 'Oops, no students to show!'});
+      students ? 
+      this.setState({allStudents: students}) : 
+      this.setState({error: 'Oops, no students to show!'});
     })
   }
 
