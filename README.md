@@ -34,13 +34,21 @@ The application should run on `localhost:3000`.
 
 ### Wins
 
-
-
++ Manipulating data retrieved from GET request to API
++ Keeping class components to a minimum - there are 9 components and 7 are functional
++ Using React Router to dynamically render a component based on user interaction
 
 ### Challenges
 
++ Determining if `SpellCard` should hold onto its own state
++ Design - the practice card pop-up styles could be adjusted to prevent user from scrolling
 
 ## Next Steps
+
++ Add reset functionality via a button in the header so user's house, character, and spells can be set back to original state
++ Add more extensive sad path testing 
++ Account for undefined routes
++ Make app responsive for tablet and mobile screen widths
 
 
 
