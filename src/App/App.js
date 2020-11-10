@@ -20,7 +20,8 @@ class App extends Component {
       myName: '',
       myCharacter: null, 
       mySpells: [],
-      spellToPractice: null
+      spellToPractice: null,
+      error: ''
     }
   }
 
@@ -30,12 +31,18 @@ class App extends Component {
   }
 
   setHouse = () => {
-    getSorted().then((houseName) => this.setState({house: houseName}))
+    getSorted().then((houseName) => {
+      houseName ? 
+      this.setState({house: houseName}) : 
+      this.setState({error: 'Sorting hat results are inconclusive.  Try again.'})
+    })
   }
 
   setAllHouses = () => {
     getAllHouses()
-    .then((houses) => this.setState({allHouses: houses}))
+    .then((houses) => {
+      houses ? this.setState({allHouses: houses}) : this.setState({error: 'No houses available.'})
+    })
   }
 
   getAllStudents = () => {
@@ -44,8 +51,8 @@ class App extends Component {
       const students = characters.filter(char => {
         return char.role === 'student'
       })
-      this.setState({allStudents: students})
-    });
+      students ? this.setState({allStudents: students}) : this.setState({error: 'Oops, no students to show!'});
+    })
   }
 
   determineAssociation = (association) => {
@@ -75,7 +82,9 @@ class App extends Component {
   setCharacter = (characterID) => {
     getMyCharacter(characterID)
     .then((charDetails) => {
-      this.setState({myCharacter: charDetails})
+      charDetails ? 
+      this.setState({myCharacter: charDetails}) : 
+      this.setState({error: 'Could not retrieve character deetails.'})
     })
   }
 
@@ -106,6 +115,7 @@ class App extends Component {
   render() {
     return (
       <main className='app-container'>
+        <h1 className='error'>{this.state.error}</h1>
         <Route path='/'>
           <Header />
         </Route>
