@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import App from './App.js';
 import { MemoryRouter } from 'react-router-dom';
-import { getSorted, getCharacters, getAllHouses, getMyCharacter } from '../apiCalls.js';
+import { getSorted, getCharacters, getAllHouses, getMyCharacter, getSpells } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
 
 describe('App', () => {
@@ -138,7 +138,58 @@ describe('App', () => {
         house: 'Gryffindor',
         school: 'Hogwarts',
         wand: 'Cherry, 13\', unicorn hair'
-    })
+    });
+
+    getSpells.mockResolvedValueOnce([
+      {
+        _id: 'a1',
+        spell: 'Aberto',
+        type: 'Charm',
+        effect: 'opens objects'   
+      },
+      {
+        _id: 'b2',
+        spell: 'Anapneo',
+        type: 'Spell',
+        effect: 'clears the target\'s airway'   
+      },
+      {
+        _id: 'c3',
+        spell: 'Babbling Curse',
+        type: 'Curse',
+        effect: 'makes a person babble'   
+      },
+      {
+        _id: 'd4',
+        spell: 'Bombarda',
+        type: 'Spell',
+        effect: 'causes explosions'   
+      },
+      {
+        _id: 'e5',
+        spell: 'Bombarda Maxima',
+        type: 'Spell',
+        effect: 'causes large explosions'   
+      },
+      {
+        _id: 'f6',
+        spell: 'Depulso',
+        type: 'Charm',
+        effect: 'drives an object away'   
+      },
+      {
+        _id: 'g7',
+        spell: 'Duro',
+        type: 'Spell',
+        effect: 'makes objects hard'   
+      },
+      {
+        _id: 'h8',
+        spell: 'Expulso',
+        type: 'Spell',
+        effect: 'makes objects explode'   
+      }
+    ]);
   })
 
   it('should render Header and Homepage', () => {
@@ -240,8 +291,17 @@ describe('App', () => {
     expect(screen.getByText('Values: courage bravery nerve chivalry')).toBeInTheDocument();
     expect(screen.getByText('Colors: scarlet gold')).toBeInTheDocument();
 
-    userEvent.click(screen.getByText('home'));
+    userEvent.click(screen.getByText('spells'));
 
-    // add to this replicated story once spells functionality is complete
+    expect(screen.getByText('Your inventory is empty')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('search by name, effect, or type')).toBeInTheDocument();
+
+    const spell = await waitFor(() => screen.getByText('Expulso'));
+
+    expect(spell).toBeInTheDocument();
+    expect(screen.getByText('Aberto')).toBeInTheDocument();
+    
+    userEvent.click(screen.getByTestId('add button for a1'));
+    expect(screen.queryByTestId('add button for a1')).toBeNull();
   })
 })
