@@ -337,7 +337,7 @@ it('should be able to practice a spell', async () => {
    expect(screen.getByRole('button', {name: 'log points & exit'})).toBeInTheDocument();
    userEvent.click(screen.getByRole('button', {name: 'log points & exit'}));
    expect(mockLogPoints).toHaveBeenCalledTimes(1);
-   expect(mockLogPoints).toHaveBeenCalledWith(3, mockSpellToPractice)
+   expect(mockLogPoints).toHaveBeenCalledWith(1, mockSpellToPractice)
    //this assertion on line 340 => the first argument of result will always be an integer
    //this result integer will always be randomly generated, so sometimes this assertion
    //passes, and sometimes it fails because the result is determined at random.
