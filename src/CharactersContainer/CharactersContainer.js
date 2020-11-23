@@ -28,7 +28,7 @@ const CharactersContainer = (props) => {
   } else if (props.myCharacter) {
     message = (
     <article className='message-article'>
-      <h1 className='characters-container-message'>Welcome, {props.myCharacter.name}</h1>
+      <h1 className='characters-container-message'>Welcome, {props.myCharacter.name}! <br/> Start saving & practicing spells.</h1>
     </article>)
   } else if (props.house) {
     message = <h1 className='characters-container-message'>Select a character</h1>
