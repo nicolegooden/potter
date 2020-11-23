@@ -17,9 +17,17 @@ const SpellCard = (props) => {
     props.spell.points >= 15 ? mastery = 'Congrats! Fully mastered!' : mastery = 'Not yet mastered';
      savedInfo = (
       <article className='saved-info'>
-        <h1 className='progress'>Points: {props.mySpells[mySpellIndex].points}</h1>
         <h1 className='mastery'>{mastery}</h1>
-        <button data-testid={`practice button for ${props.spell._id}`} onClick={() => props.declarePracticeSpell(props.spell)} className='practice-spell-button'>practice</button>
+        {mastery === 'Not yet mastered' && (
+          <article>
+            <h1 className='progress'>Points: {props.mySpells[mySpellIndex].points}</h1>
+            <button 
+              data-testid={`practice button for ${props.spell._id}`} 
+              onClick={() => props.declarePracticeSpell(props.spell)} 
+              className='practice-spell-button'>practice
+            </button>
+          </article>
+        )}
       </article>
     )
   }
