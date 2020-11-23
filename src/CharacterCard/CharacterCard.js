@@ -5,7 +5,13 @@ import PropTypes from 'prop-types';
 const CharacterCard = (props) => {
   let button;
   if (!props.myCharacter) {
-    button = <button data-testid={`select button for ${props.name}`}  onClick={() => props.setTempCharacterDetails(props.name, props.id)} className='select-button'>select</button>
+    button = 
+      <button 
+        data-testid={`select button for ${props.name}`}  
+        onClick={() => props.setTempCharacterDetails(props.name, props.id)} 
+        className='select-button'>
+          select
+      </button>
   }
   return (
     <article className='character-article'>
