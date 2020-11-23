@@ -14,7 +14,7 @@ class App extends Component {
     super();
     this.state = {
       house: '',
-      allStudents: [],
+      allCharacters: [],
       allHouses: [],
       studentsByHouse: [],
       myName: '',
@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.getAllStudents();
+    this.getAllCharacters();
     this.setAllHouses();
   }
 
@@ -47,14 +47,11 @@ class App extends Component {
     })
   }
 
-  getAllStudents = () => {
+  getAllCharacters = () => {
     getCharacters()
     .then((characters) => {
-      const students = characters.filter(char => {
-        return char.role === 'student'
-      })
-      students ? 
-      this.setState({allStudents: students}) : 
+      characters ? 
+      this.setState({allCharacters: characters}) : 
       this.setState({error: 'Oops, no students to show!'});
     })
   }
@@ -77,8 +74,8 @@ class App extends Component {
   }
 
   getStudentsByHouse = () => {
-    const studentsByHouse = this.state.allStudents.filter(student => {
-      return student.house === this.state.house;
+    const studentsByHouse = this.state.allCharacters.filter(char => {
+      return char.house === this.state.house && char.role === 'student';
     })
     this.setState({studentsByHouse: studentsByHouse})
   }
@@ -88,7 +85,7 @@ class App extends Component {
     .then((charDetails) => {
       charDetails ? 
       this.setState({myCharacter: charDetails[0]}) : 
-      this.setState({error: 'Could not retrieve character deetails.'})
+      this.setState({error: 'Could not retrieve character details.'})
     })
   }
 
@@ -133,6 +130,7 @@ class App extends Component {
         </Route>
         <Route path='/characters'>
           <CharactersContainer 
+            allCharacters={this.state.allCharacters}
             house={this.state.house}
             studentsByHouse={this.state.studentsByHouse}
             setCharacter={this.setCharacter}
