@@ -55,5 +55,5 @@ CharactersContainer.propTypes = {
   setTempCharacterDetails: PropTypes.func.isRequired,
   myName: PropTypes.string,
   myCharacter: PropTypes.object,
-  myID: PropTypes.string
+  myID: PropTypes.number
 }
