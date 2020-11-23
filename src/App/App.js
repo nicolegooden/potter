@@ -121,7 +121,7 @@ class App extends Component {
       <main className='app-container'>
         <h1 className='error'>{this.state.error}</h1>
         <Route path='/'>
-          <Header />
+          <Header getStudentsByHouse={this.getStudentsByHouse}/>
         </Route>
         <Route exact path='/'>
           <HomePage 
