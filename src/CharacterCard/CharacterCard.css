@@ -10,6 +10,7 @@
 .select-button {
   border-radius: 15%;
   margin-left: 11em;
+  padding: 0.5em;
 }
 
 .select-button:hover {
