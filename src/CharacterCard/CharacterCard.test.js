@@ -8,12 +8,13 @@ import { MemoryRouter } from 'react-router-dom';
 describe('Character Card', () => {
   it('should render all expected elements before character selection', () => {
 
-    let mockID = 'ghi789';
+    let mockID = 3;
     let mockName = 'Hermione Granger';
     let mockBloodStatus = 'muggle-born';
     let mockSpecies = 'human';
     let mockSetTemp = jest.fn();
-    let mockMyCharacter = null
+    let mockMyCharacter = null;
+    let mockHouse = 'Gryffindor'
 
     render(
       <MemoryRouter>
@@ -24,6 +25,7 @@ describe('Character Card', () => {
           species={mockSpecies}
           setTempCharacterDetails={mockSetTemp}
           myCharacter={mockMyCharacter}
+          house={mockHouse}
         /> 
       </MemoryRouter>
     )
@@ -36,13 +38,13 @@ describe('Character Card', () => {
   })
 
   it('should no longer render the select button if myCharacter is stored', () => {
-    let mockID = 'ghi789';
+    let mockID = 3;
     let mockName = 'Hermione Granger';
     let mockBloodStatus = 'muggle-born';
     let mockSpecies = 'human';
     let mockSetTemp = jest.fn();
     let mockMyCharacter = {
-      _id: 'ghi789',
+      _id: 3,
       name: 'Hermione Granger',
       role: 'student',
       house: 'Gryffindor',
@@ -76,12 +78,13 @@ describe('Character Card', () => {
   })
 
   it('should fire prop method when select button is clicked', () => {
-    let mockID = 'ghi789';
+    let mockID = 3;
     let mockName = 'Hermione Granger';
     let mockBloodStatus = 'muggle-born';
     let mockSpecies = 'human';
     let mockSetTemp = jest.fn();
     let mockMyCharacter = null;
+    let mockHouse = 'Gryffindor'
 
     render(
       <MemoryRouter>
@@ -92,6 +95,7 @@ describe('Character Card', () => {
           species={mockSpecies}
           setTempCharacterDetails={mockSetTemp}
           myCharacter={mockMyCharacter}
+          house={mockHouse}
         /> 
       </MemoryRouter>
     )

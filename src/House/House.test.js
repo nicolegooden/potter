@@ -9,7 +9,8 @@ describe('House', () => {
 
     const mockHouseDetails = {
       _id: 'sdfkj952',
-      colors: ['blue', 'bronze'],
+      color1: 'blue', 
+      color2: 'bronze',
       founder: 'Rowena Ravenclaw',
       headOfHouse: 'Fillius Flitwick',
       houseGhost: 'The Grey Lady',
@@ -17,7 +18,10 @@ describe('House', () => {
       members: ['gfdkglj889', 'qwir330', 'bmnk4237'],
       name: 'Ravenclaw',
       school: 'Hogwarts',
-      values: ['intelligence', 'creativity', 'wit']
+      value1: 'intelligence',
+      value2: 'creativity',
+      value3: 'wit',
+      value4: 'learning'
     }
 
     render(
@@ -29,11 +33,11 @@ describe('House', () => {
     )
 
     expect(screen.getByText('Ravenclaw')).toBeInTheDocument();
-    expect(screen.getByText('Head: Fillius Flitwick')).toBeInTheDocument();
-    expect(screen.getByText('Founder: Rowena Ravenclaw')).toBeInTheDocument();
-    expect(screen.getByText('Ghost: The Grey Lady')).toBeInTheDocument();
-    expect(screen.getByText('Mascot: eagle')).toBeInTheDocument();
-    expect(screen.getByText('Values: intelligence creativity wit')).toBeInTheDocument();
-    expect(screen.getByText('Colors: blue bronze')).toBeInTheDocument();
+    expect(screen.getByText('Fillius Flitwick')).toBeInTheDocument();
+    expect(screen.getByText('Rowena Ravenclaw')).toBeInTheDocument();
+    expect(screen.getByText('The Grey Lady')).toBeInTheDocument();
+    expect(screen.getByText('eagle')).toBeInTheDocument();
+    expect(screen.getByText('intelligence, creativity, wit, & learning')).toBeInTheDocument();
+    expect(screen.getByText('blue & bronze')).toBeInTheDocument();
   })
 })
