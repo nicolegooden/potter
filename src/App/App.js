@@ -87,7 +87,7 @@ class App extends Component {
     getMyCharacter(characterID)
     .then((charDetails) => {
       charDetails ? 
-      this.setState({myCharacter: charDetails}) : 
+      this.setState({myCharacter: charDetails[0]}) : 
       this.setState({error: 'Could not retrieve character deetails.'})
     })
   }
