@@ -73,6 +73,7 @@
   border-radius: 6%;
   background-color: #AFECDC;
   border: solid;
+  z-index: 1;
   text-align: center;
   position: fixed;
     top: 25em;
@@ -80,7 +81,3 @@
     width: 30%;
     height: 40%;
 }
-
-
-  
-
