@@ -5,7 +5,15 @@ import PropTypes from 'prop-types';
 
 const CharactersContainer = (props) => {
   let message;
-  const allCharacters = props.studentsByHouse.map(char => {
+  let characterChoices;
+
+  if (props.house) {
+    characterChoices = props.studentsByHouse
+  } else {
+    characterChoices = props.allCharacters
+  }
+  
+  let characters = characterChoices.map(char => {
     return (
       <CharacterCard 
         key={char._id}
@@ -13,12 +21,15 @@ const CharactersContainer = (props) => {
         name={char.name}
         bloodStatus={char.bloodStatus}
         species={char.species}
+        role={char.role}
         setTempCharacterDetails={props.setTempCharacterDetails}
         myCharacter={props.myCharacter}
+        myHouse={char.house}
+        house={props.house}
       />
     )
   })
-
+ 
   if (props.myName && !props.myCharacter) {
     message = (
       <article className='message-article'>
@@ -40,7 +51,7 @@ const CharactersContainer = (props) => {
       <section className='characters-container'>
         {message}
         <section className='all-characters-section'>
-          {allCharacters}
+          {characters}
         </section>
       </section>
   )
@@ -55,5 +66,6 @@ CharactersContainer.propTypes = {
   setTempCharacterDetails: PropTypes.func.isRequired,
   myName: PropTypes.string,
   myCharacter: PropTypes.object,
-  myID: PropTypes.number
+  myID: PropTypes.number,
+  allCharacters: PropTypes.array
 }
