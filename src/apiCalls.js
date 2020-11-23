@@ -12,7 +12,7 @@ export const getSorted = async () => {
 export const getCharacters = async () => {
   const response = await fetch('https://fe-cors-proxy.herokuapp.com', {
     headers: {
-      'Target-URL': 'http://localhost:3001/api/v1/characters'
+      "Target-URL": "https://potter-server.herokuapp.com/api/v1/characters"
     }
   })
   try {
@@ -27,7 +27,7 @@ export const getCharacters = async () => {
 export const getMyCharacter = async (characterID) => {
   const response = await fetch('https://fe-cors-proxy.herokuapp.com', {
     headers: {
-      'Target-URL': `http://localhost:3001/api/v1/characters/${characterID}`
+      "Target-URL": `https://potter-server.herokuapp.com/api/v1/characters/${characterID}`
     }
   })
   try {
@@ -42,7 +42,7 @@ export const getMyCharacter = async (characterID) => {
 export const getAllHouses = async () => {
   const response = await fetch('https://fe-cors-proxy.herokuapp.com', {
     headers: {
-      'Target-URL': 'http://localhost:3001/api/v1/houses'
+      "Target-URL": "https://potter-server.herokuapp.com/api/v1/houses"
     }
   })
   try {
@@ -57,7 +57,7 @@ export const getAllHouses = async () => {
 export const getSpells = async () => {
   const response = await fetch('https://fe-cors-proxy.herokuapp.com', {
     headers: {
-      'Target-URL': 'http://localhost:3001/api/v1/spells'
+      "Target-URL": "https://potter-server.herokuapp.com/api/v1/spells"
     }
   })
   try {
