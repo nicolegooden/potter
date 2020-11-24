@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/potter/static/css/main.a726426b.chunk.css",
+    "main.css": "/potter/static/css/main.5d9e1606.chunk.css",
     "main.js": "/potter/static/js/main.0add9d95.chunk.js",
     "main.js.map": "/potter/static/js/main.0add9d95.chunk.js.map",
     "runtime-main.js": "/potter/static/js/runtime-main.b9be41d9.js",
@@ -10,14 +10,14 @@
     "static/js/3.2d03917e.chunk.js": "/potter/static/js/3.2d03917e.chunk.js",
     "static/js/3.2d03917e.chunk.js.map": "/potter/static/js/3.2d03917e.chunk.js.map",
     "index.html": "/potter/index.html",
-    "static/css/main.a726426b.chunk.css.map": "/potter/static/css/main.a726426b.chunk.css.map",
+    "static/css/main.5d9e1606.chunk.css.map": "/potter/static/css/main.5d9e1606.chunk.css.map",
     "static/js/2.45347869.chunk.js.LICENSE.txt": "/potter/static/js/2.45347869.chunk.js.LICENSE.txt",
     "static/media/sorting-hat-image.651fd85b.png": "/potter/static/media/sorting-hat-image.651fd85b.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b9be41d9.js",
     "static/js/2.45347869.chunk.js",
-    "static/css/main.a726426b.chunk.css",
+    "static/css/main.5d9e1606.chunk.css",
     "static/js/main.0add9d95.chunk.js"
   ]
 }
