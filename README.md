@@ -13,7 +13,9 @@ As users arrive at the homepage, they are prompted to receive a house assignment
 
 ### Tech
 
-Frontend: This application was developed with React, React Router, and Asynchronous JavaScript for network requests to a custom API. Dynamic routing was implemented in order to determine the render for the house details view and the character details view. Testing was supported by React Testing Library and Jest. 
+Frontend: 
+
+This application was developed with React, React Router, and Asynchronous JavaScript for network requests to a custom API. Dynamic routing was implemented in order to determine the render for the house details view and the character details view. Testing was supported by React Testing Library and Jest. 
 
 Backend: 
 
@@ -57,7 +59,7 @@ The application should run on `localhost:3000`.
 + Determining if `SpellCard` should hold onto its own state
 + Design - the practice card pop-up styles could be adjusted to prevent user from scrolling
 
-## Next Steps
+### Next Steps
 
 + Add more extensive sad path, unit, and integration testing for recent enhancements
 + Account for undefined routes
