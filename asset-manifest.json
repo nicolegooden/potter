@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/potter/static/css/main.5d9e1606.chunk.css",
-    "main.js": "/potter/static/js/main.0add9d95.chunk.js",
-    "main.js.map": "/potter/static/js/main.0add9d95.chunk.js.map",
+    "main.js": "/potter/static/js/main.4c57421b.chunk.js",
+    "main.js.map": "/potter/static/js/main.4c57421b.chunk.js.map",
     "runtime-main.js": "/potter/static/js/runtime-main.b9be41d9.js",
     "runtime-main.js.map": "/potter/static/js/runtime-main.b9be41d9.js.map",
     "static/js/2.45347869.chunk.js": "/potter/static/js/2.45347869.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.b9be41d9.js",
     "static/js/2.45347869.chunk.js",
     "static/css/main.5d9e1606.chunk.css",
-    "static/js/main.0add9d95.chunk.js"
+    "static/js/main.4c57421b.chunk.js"
   ]
 }
