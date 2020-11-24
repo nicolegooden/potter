@@ -2,7 +2,7 @@
   "name": "potter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://nicolegooden.github.io/potter/home",
+  "homepage": "http://nicolegooden.github.io/potter/",
   "dependencies": {
     "dotenv": "^8.2.0",
     "prop-types": "^15.7.2",
