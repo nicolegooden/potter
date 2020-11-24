@@ -6,7 +6,7 @@
   height: 45em;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 3em;
+  grid-gap: 1em;
 }
 
 .characters-container-message {
@@ -33,4 +33,28 @@
   cursor: pointer;
   box-shadow: 15px 4px 20px black;
   background-color: #E0F8F8;
+}
+
+@media only screen and (max-width: 900px) {
+  .all-characters-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .all-characters-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1385px) {
+  .all-characters-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0;
+  } 
 }

@@ -14,19 +14,21 @@ class App extends Component {
     super();
     this.state = {
       house: '',
-      allStudents: [],
+      allCharacters: [],
       allHouses: [],
       studentsByHouse: [],
       myName: '',
       myCharacter: null, 
       mySpells: [],
       spellToPractice: null,
-      error: ''
+      error: '',
+      myID: null
     }
+    this.baseState = this.state;
   }
 
   componentDidMount = () => {
-    this.getAllStudents();
+    this.getAllCharacters();
     this.setAllHouses();
   }
 
@@ -47,14 +49,11 @@ class App extends Component {
     })
   }
 
-  getAllStudents = () => {
+  getAllCharacters = () => {
     getCharacters()
     .then((characters) => {
-      const students = characters.filter(char => {
-        return char.role === 'student'
-      })
-      students ? 
-      this.setState({allStudents: students}) : 
+      characters ? 
+      this.setState({allCharacters: characters}) : 
       this.setState({error: 'Oops, no students to show!'});
     })
   }
@@ -77,8 +76,8 @@ class App extends Component {
   }
 
   getStudentsByHouse = () => {
-    const studentsByHouse = this.state.allStudents.filter(student => {
-      return student.house === this.state.house;
+    const studentsByHouse = this.state.allCharacters.filter(char => {
+      return char.house === this.state.house && char.role === 'student';
     })
     this.setState({studentsByHouse: studentsByHouse})
   }
@@ -87,8 +86,8 @@ class App extends Component {
     getMyCharacter(characterID)
     .then((charDetails) => {
       charDetails ? 
-      this.setState({myCharacter: charDetails}) : 
-      this.setState({error: 'Could not retrieve character deetails.'})
+      this.setState({myCharacter: charDetails[0]}) : 
+      this.setState({error: 'Could not retrieve character details.'})
     })
   }
 
@@ -116,14 +115,25 @@ class App extends Component {
     this.setState({spellToPractice: spell})
   }
 
+  resetGame = () => {
+    if (window.confirm('Saved data will be deleted. Continue?')) {
+      this.setState(this.baseState);
+      this.getAllCharacters();
+      this.setAllHouses();
+    } 
+  }
+
   render() {
     return (
       <main className='app-container'>
         <h1 className='error'>{this.state.error}</h1>
         <Route path='/'>
-          <Header />
+          <Header 
+            getStudentsByHouse={this.getStudentsByHouse} 
+            resetGame={this.resetGame}
+          />
         </Route>
-        <Route exact path='/'>
+        <Route exact path='/home'>
           <HomePage 
             house={this.state.house}
             setHouse={this.setHouse}
@@ -133,6 +143,7 @@ class App extends Component {
         </Route>
         <Route path='/characters'>
           <CharactersContainer 
+            allCharacters={this.state.allCharacters}
             house={this.state.house}
             studentsByHouse={this.state.studentsByHouse}
             setCharacter={this.setCharacter}

@@ -60,6 +60,8 @@
 
 .spells-message, .error {
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 1em;
 }
 
 .spell-name {
@@ -71,6 +73,7 @@
   border-radius: 6%;
   background-color: #AFECDC;
   border: solid;
+  z-index: 1;
   text-align: center;
   position: fixed;
     top: 25em;
@@ -79,6 +82,60 @@
     height: 40%;
 }
 
+@media only screen and (max-width: 470px) {
+  .all-spells, .all-saved-spells {
+    display: grid;
+    grid-template-columns: 1fr;
+  } 
 
-  
+  .browse-input-container {
+    display: grid;
+    grid-template-rows: repeat(3, 3em);
+    text-align: center;
+  }
 
+  .view-all-button, .search-button {
+    height: 3em;
+    grid-row-start: 3;
+    margin: 0;
+    margin-left: 5em;
+  }
+
+  .practice-card {
+    left: 7em;
+    width: 10em;
+  }
+}
+
+@media only screen and (min-width: 470px) and (max-width: 780px) {
+  .all-spells, .all-saved-spells {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .practice-card {
+    left: 12em;
+  }
+}  
+
+@media only screen and (min-width: 780px) and (max-width: 1120px) {
+  .all-spells, .all-saved-spells {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .practice-card {
+    left: 20em;
+  }
+}  
+
+@media only screen and (min-width: 1120px) and (max-width: 1340px) {
+  .all-spells, .all-saved-spells {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .practice-card {
+    left: 25em;
+  }
+} 

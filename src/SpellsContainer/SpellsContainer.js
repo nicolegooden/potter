@@ -25,18 +25,27 @@ class SpellsContainer extends Component {
 
   displayAllSpellCards = () => {
     if (this.state.allSpells && this.state.matchingSpells.length === 0 && this.state.allSpellsDisplayed) {
-    return this.state.allSpells.map(spell => {
-      return (
-        <SpellCard 
-          key={spell._id}
-          spell={spell}
-          myCharacter={this.props.myCharacter}
-          addSpell={this.props.addSpell}
-          mySpells={this.props.mySpells}
-          declarePracticeSpell={this.props.declarePracticeSpell}
-        />
-      )})
-   } else {
+      this.state.allSpells.forEach(spell => {
+        this.props.mySpells.forEach(mySpell => {
+          if (mySpell.spell === spell.spell) {
+            let index = this.state.allSpells.indexOf(spell)
+            this.state.allSpells.splice(index, 1);
+          }
+        })
+      })
+      return this.state.allSpells.map(spell => {
+        return (
+          <SpellCard 
+            key={spell._id}
+            spell={spell}
+            myCharacter={this.props.myCharacter}
+            addSpell={this.props.addSpell}
+            mySpells={this.props.mySpells}
+            declarePracticeSpell={this.props.declarePracticeSpell}
+          />
+        )
+      })
+    } else {
      return this.state.matchingSpells.map(match => {
        return (
         <SpellCard 
@@ -46,8 +55,9 @@ class SpellsContainer extends Component {
           addSpell={this.props.addSpell}
           mySpells={this.props.mySpells}
           declarePracticeSpell={this.props.declarePracticeSpell}
-      />
-       )})}
+        />
+      )}
+    )}
   }
 
   showMessageForMySpells = () => {

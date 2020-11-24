@@ -217,7 +217,7 @@ describe('Characters Container', () => {
 
     const name = screen.getByText('Ginny Weasley');
     expect(name).toBeInTheDocument();
-    expect(screen.getByText('Welcome, Harry Potter')).toBeInTheDocument();
+    expect(screen.getByText('Welcome, Harry Potter! Start saving & practicing spells.')).toBeInTheDocument();
     expect(screen.queryByRole('button', {name: 'finalize'})).toBeNull();
     expect(screen.queryByRole('button', {name: 'select'})).toBeNull();
   })
