@@ -21,8 +21,10 @@ class App extends Component {
       myCharacter: null, 
       mySpells: [],
       spellToPractice: null,
-      error: ''
+      error: '',
+      myID: null
     }
+    this.baseState = this.state;
   }
 
   componentDidMount = () => {
@@ -113,14 +115,25 @@ class App extends Component {
     this.setState({spellToPractice: spell})
   }
 
+  resetGame = () => {
+    if (window.confirm('Saved data will be deleted. Continue?')) {
+      this.setState(this.baseState);
+      this.getAllCharacters();
+      this.setAllHouses();
+    } 
+  }
+
   render() {
     return (
       <main className='app-container'>
         <h1 className='error'>{this.state.error}</h1>
         <Route path='/'>
-          <Header getStudentsByHouse={this.getStudentsByHouse}/>
+          <Header 
+            getStudentsByHouse={this.getStudentsByHouse} 
+            resetGame={this.resetGame}
+          />
         </Route>
-        <Route exact path='/'>
+        <Route exact path='/home'>
           <HomePage 
             house={this.state.house}
             setHouse={this.setHouse}
