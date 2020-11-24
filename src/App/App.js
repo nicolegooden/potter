@@ -133,7 +133,7 @@ class App extends Component {
             resetGame={this.resetGame}
           />
         </Route>
-        <Route exact path='/home'>
+        <Route exact path='/potter'>
           <HomePage 
             house={this.state.house}
             setHouse={this.setHouse}
