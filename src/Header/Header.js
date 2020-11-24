@@ -10,8 +10,8 @@ const Header = (props) => {
       <img src={HP} className='hp-logo' alt='Harry Potter logo'></img>
       <article className='nav-container'>
         <NavLink to='/potter' className='nav-link'><h1 className='header-link'>home</h1></NavLink>
-        <NavLink to='/characters' className='nav-link'><h1 onClick={props.getStudentsByHouse} className='header-link'>characters</h1></NavLink>
-        <NavLink to='/spells' className='nav-link'><h1 className='header-link'>spells</h1></NavLink>
+        <NavLink to='/potter/characters' className='nav-link'><h1 onClick={props.getStudentsByHouse} className='header-link'>characters</h1></NavLink>
+        <NavLink to='/potter/spells' className='nav-link'><h1 className='header-link'>spells</h1></NavLink>
         <h1 onClick={props.resetGame} className='header-link'>reset</h1>
       </article>
     </section>

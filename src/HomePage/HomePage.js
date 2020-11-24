@@ -15,12 +15,12 @@ const HomePage = (props) => {
   } else {
     message = <h1 className='message'>You are... {props.house}!</h1>
     houseButton = (
-      <Link to={`/house/${props.house}`} className='house-button-container'>
+      <Link to={`/potter/house/${props.house}`} className='house-button-container'>
         <button className='house-button'>learn about {props.house}</button>
       </Link>
     )
     characterButton = (
-      <Link to='/characters' className='character-container'>
+      <Link to='/potter/characters' className='character-container'>
         <button onClick={props.getStudentsByHouse} className='character-button'>choose character</button>
       </Link>
     )
@@ -28,7 +28,7 @@ const HomePage = (props) => {
 
   if (characterButton && props.myCharacter) {
     characterButton = (
-      <Link to={`/my-character/${props.myCharacter.name}`} className='character-container'>
+      <Link to={`/potter/my-character/${props.myCharacter.name}`} className='character-container'>
         <button className='character-button'>view character details</button>
       </Link>
     )

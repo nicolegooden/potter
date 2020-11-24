@@ -141,7 +141,7 @@ class App extends Component {
             myCharacter={this.state.myCharacter}
           />
         </Route>
-        <Route path='/characters'>
+        <Route path='/potter/characters'>
           <CharactersContainer 
             allCharacters={this.state.allCharacters}
             house={this.state.house}
@@ -153,7 +153,7 @@ class App extends Component {
             myID={this.state.myID}
           />
         </Route>
-        <Route path='/spells'>
+        <Route path='/potter/spells'>
           <SpellsContainer 
             myCharacter={this.state.myCharacter}
             mySpells={this.state.mySpells}
@@ -164,7 +164,7 @@ class App extends Component {
           />
         </Route>
         <Route 
-          path='/house/:houseName'
+          path='/potter/house/:houseName'
           render={({ match }) => {
             const house = this.state.allHouses.find(house => house.name === match.params.houseName)
             if (house) {
@@ -174,7 +174,7 @@ class App extends Component {
         >
         </Route>
         <Route 
-          path='/my-character/:characterName'
+          path='/potter/my-character/:characterName'
           render={({ match }) => {
             if (match.params.characterName === this.state.myCharacter.name) {
               return <CharacterDetails 
