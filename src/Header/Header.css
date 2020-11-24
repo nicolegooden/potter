@@ -27,3 +27,31 @@
   color: black;
   text-decoration: none;
 }
+
+@media only screen and (max-width: 420px) {
+  .nav-container {
+    grid-column-start: 2;
+    display: grid;
+    grid-template-rows: repeat(4, 0.5fr);
+    margin-left: 7em;
+  }
+
+  .header-link {
+    margin: 0;
+  }
+
+  .header-container {
+    height: 10em;
+    padding-bottom: 2em;
+  }
+}
+
+@media only screen and (min-width: 420px) and (max-width: 880px) {
+  .nav-container {
+    display: flex;
+  }
+
+  .nav-link {
+    padding-right: 1.5em;
+  }
+}
