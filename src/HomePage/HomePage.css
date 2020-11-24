@@ -83,3 +83,19 @@ body, html {
     border-radius: 20%;
 }
 
+@media only screen and (max-width: 420px) {
+  .house-button {
+    margin-left: 5em;
+  }
+
+  .sorting-hat-image {
+    margin-left: 1em;
+  }
+
+  .message {
+    margin-left: 0;
+  }
+}
+
+
+
