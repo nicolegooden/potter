@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/potter/home/static/css/main.a726426b.chunk.css",
-    "main.js": "/potter/home/static/js/main.092ccd13.chunk.js",
-    "main.js.map": "/potter/home/static/js/main.092ccd13.chunk.js.map",
-    "runtime-main.js": "/potter/home/static/js/runtime-main.ef4ed9dc.js",
-    "runtime-main.js.map": "/potter/home/static/js/runtime-main.ef4ed9dc.js.map",
-    "static/js/2.45347869.chunk.js": "/potter/home/static/js/2.45347869.chunk.js",
-    "static/js/2.45347869.chunk.js.map": "/potter/home/static/js/2.45347869.chunk.js.map",
-    "static/js/3.2d03917e.chunk.js": "/potter/home/static/js/3.2d03917e.chunk.js",
-    "static/js/3.2d03917e.chunk.js.map": "/potter/home/static/js/3.2d03917e.chunk.js.map",
-    "index.html": "/potter/home/index.html",
-    "static/css/main.a726426b.chunk.css.map": "/potter/home/static/css/main.a726426b.chunk.css.map",
-    "static/js/2.45347869.chunk.js.LICENSE.txt": "/potter/home/static/js/2.45347869.chunk.js.LICENSE.txt",
-    "static/media/sorting-hat-image.651fd85b.png": "/potter/home/static/media/sorting-hat-image.651fd85b.png"
+    "main.css": "/potter/static/css/main.a726426b.chunk.css",
+    "main.js": "/potter/static/js/main.092ccd13.chunk.js",
+    "main.js.map": "/potter/static/js/main.092ccd13.chunk.js.map",
+    "runtime-main.js": "/potter/static/js/runtime-main.b9be41d9.js",
+    "runtime-main.js.map": "/potter/static/js/runtime-main.b9be41d9.js.map",
+    "static/js/2.45347869.chunk.js": "/potter/static/js/2.45347869.chunk.js",
+    "static/js/2.45347869.chunk.js.map": "/potter/static/js/2.45347869.chunk.js.map",
+    "static/js/3.2d03917e.chunk.js": "/potter/static/js/3.2d03917e.chunk.js",
+    "static/js/3.2d03917e.chunk.js.map": "/potter/static/js/3.2d03917e.chunk.js.map",
+    "index.html": "/potter/index.html",
+    "static/css/main.a726426b.chunk.css.map": "/potter/static/css/main.a726426b.chunk.css.map",
+    "static/js/2.45347869.chunk.js.LICENSE.txt": "/potter/static/js/2.45347869.chunk.js.LICENSE.txt",
+    "static/media/sorting-hat-image.651fd85b.png": "/potter/static/media/sorting-hat-image.651fd85b.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.ef4ed9dc.js",
+    "static/js/runtime-main.b9be41d9.js",
     "static/js/2.45347869.chunk.js",
     "static/css/main.a726426b.chunk.css",
     "static/js/main.092ccd13.chunk.js"
