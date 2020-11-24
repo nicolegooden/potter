@@ -1,6 +1,10 @@
 ## Potter
 
-*Potter* is a React application built by [Nicole Gooden](https://github.com/nicolegooden).
+*Potter* is a full-stack application built by [Nicole Gooden](https://github.com/nicolegooden).
+
+### Deployed App
+
+[Potter deployed](https://nicolegooden.github.io/potter/)
 
 ### Overview
 
@@ -9,7 +13,15 @@ As users arrive at the homepage, they are prompted to receive a house assignment
 
 ### Tech
 
-This application was developed with React, React Router, and Asynchronous JavaScript for network requests to the [Potter API](https://www.potterapi.com/). Dynamic routing was implemented in order to determine the render for the house details view and the character details view. Testing was supported by React Testing Library, Jest, and Node. 
+Frontend: This application was developed with React, React Router, and Asynchronous JavaScript for network requests to a custom API. Dynamic routing was implemented in order to determine the render for the house details view and the character details view. Testing was supported by React Testing Library and Jest. 
+
+Backend: 
+
+A [third party API](https://www.potterapi.com/) was initially connected to support the frontend requests, but authorization has since failed. In order to maintain this project, a custom backend was built by the owner.
+
+This application was supported by a server developed via Node.js, Express, PostgreSQL, and Knex for querying the database.  All endpoints, or route handlers, have been established by Express.  Knex was responsible for migrations (creating tables in PostgreSQL database), seeding data (setting data per table), and querying the local database for matches requested through endpoints.  This process relied heavily on backend JavaScript.
+
+Learn more about the [Potter Server](https://github.com/nicolegooden/potter-server).
 
 ### Installation 
 
@@ -34,21 +46,22 @@ The application should run on `localhost:3000`.
 
 ### Wins
 
++ Building the backend for the original frontend
 + Manipulating data retrieved from GET request to API
 + Keeping class components to a minimum - there are 9 components and 7 are functional
 + Using React Router to dynamically render a component based on user interaction
 
 ### Challenges
 
++ Depending on a third-party API - ended up building my own backend and route handlers after access (API key) stopped working
 + Determining if `SpellCard` should hold onto its own state
 + Design - the practice card pop-up styles could be adjusted to prevent user from scrolling
 
 ## Next Steps
 
-+ Add reset functionality via a button in the header so user's house, character, and spells can be set back to original state
-+ Add more extensive sad path testing 
++ Add more extensive sad path, unit, and integration testing for recent enhancements
 + Account for undefined routes
-+ Make app responsive for tablet and mobile screen widths
++ Update CSS with SASS for all components
 
 
 
