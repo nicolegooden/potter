@@ -64,6 +64,7 @@ The application should run on `localhost:3000`.
 + Add more extensive sad path, unit, and integration testing for recent enhancements
 + Account for undefined routes
 + Update CSS with SASS for all components
++ Implement extension - character dueling with mastered spells to earn house points
 
 
 
